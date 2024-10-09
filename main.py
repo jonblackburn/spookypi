@@ -49,6 +49,7 @@ class SpookyPi:
         This method removes the observer from the object detector and stops it.
         """
         print("Stopping object detector...")
+        self.active_conversation = None
         self.object_detector.stop()
         print("Object detector stopped.")
     
@@ -67,6 +68,10 @@ class SpookyPi:
         if event_type == 'new_object_detected':
             saved_image = self.log_and_save_detection(data)
             self.initiate_conversation(data, saved_image)
+
+        if event_type == 'object_left':
+            print("Object left the frame.")
+            self.active_conversation = None 
             
     def log_and_save_detection(self, data):
         """
