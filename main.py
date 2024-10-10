@@ -2,7 +2,7 @@
 
 import uvicorn
 from app.detection.detector import ObjectDetector
-from app.ai_services.openai import OpenAIService
+from app.ai_services.openai_service import OpenAIService
 import keyboard
 import cv2
 import os
@@ -13,9 +13,9 @@ class SpookyPi:
     def __init__(self):
 
         # parse a configuration file
-        with open('config.json', 'r') as config_file:
+        config_path = os.path.join(os.path.dirname(__file__), 'config.json')
+        with open(config_path, 'r') as config_file:
             self.config = json.load(config_file)
-        
         # initialize the object detector
         self.object_detector = ObjectDetector(self.config['Detection'])
 
@@ -134,17 +134,16 @@ class SpookyPi:
         openai_service = OpenAIService(self.config['Keys']['OpenAI'])
 
         # Prepare initial message for the AI assistant
-        initial_message = f"Analyze this image containing a {data['class_name']} and greet what you see in context as if you believe any costume is real."
+        initial_message = f"You are the ghost of a 1930s flapper girl. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any costume is real."
 
-        # Start conversation with the AI assistant
-        self.active_conversation = openai_service.start_conversation("Halloween_Prop_Assistant", initial_message, image_path)
+        # capture the response from the AI
+        self.active_conversation = openai_service.generate_response(initial_message, image_path)
 
         # Process the AI's response
-        ai_response = self.active_conversation['choices'][0]['message']['content']
-        print(f"AI Assistant's response:\n{ai_response}")
+        print(f"AI Assistant's response:\n{self.active_conversation}")
 
         # Start an interactive conversation
-        while not self.active_conversation == None:
+        """  while not self.active_conversation == None:
             user_input = input("Your response (or 'stop' to end): ")
             if user_input.lower() == 'stop':
                 break
@@ -152,9 +151,9 @@ class SpookyPi:
             # Continue the conversation with the AI
             conversation = openai_service.continue_conversation(conversation, user_input)
             ai_response = conversation['choices'][0]['message']['content']
-            print(f"AI Assistant's response:\n{ai_response}")
+            print(f"AI Assistant's response:\n{ai_response}") """
 
-        return ai_response  # Return the last response from the AI
+        return self.active_conversation  # Return the last response from the AI
 
 
 if __name__ == "__main__":
