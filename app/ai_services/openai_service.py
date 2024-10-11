@@ -10,17 +10,9 @@ class OpenAIService:
             raise ValueError("OPENAI_API_KEY environment variable is not set and a custom API key was not provided.")
         self.openai_client = OpenAI(api_key=self.api_key)
 
-    def generate_response(self, prompt: str, media: Optional[str] = None, metadata = None) -> str:
+    def generate_response(self, prompt: str, media: Optional[str] = None) -> str:
         
-        default_metadata = {
-            "Name": "SpookyPi", "CommunicationAge": 10, 
-            "Description": "You are surrounded in darkness, you are a robot", 
-            "Backstory": "You were created by a mad scientist who wanted to create the perfect robot"}
-        
-        if metadata is not None:
-            messages = [{"role": "user", "content": self._prepare_content(prompt, media), "metadata": metadata}]
-        else:
-            messages = [{"role": "user", "content": self._prepare_content(prompt, media), "metadata": default_metadata}]    
+        messages = [{"role": "user", "content": self._prepare_content(prompt, media)}]    
 
         response = self.openai_client.chat.completions.create(
             model="gpt-4o-mini",

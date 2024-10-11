@@ -139,31 +139,18 @@ class SpookyPi:
         if self.active_conversation is None:
             # Reset the conversation
             initial_message = "Forget everything we've discussed to this point, we are starting over. "
-            # The actual Prompt
-            initial_message = initial_message + f"You are {self.config["Prop"]["Description"]}. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any halloween costume is real."
-
-            # and a reminder to check the message metadata.
-            initial_message = initial_message + "The metadata with this message contains information about your name, backstory, a description of your current scenario, and a communication age which is a maximum age in years of the person you are communicating with."
             
+            # The actual Prompt
+            initial_message = initial_message + f"You are {self.config["Prop"]["Description"]}. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any halloween costume is real. "
+            initial_message = initial_message + f"You should communicate as if you are speaking to a {self.config["Prop"]["CommunicationAge"]} year old."
+            initial_message = initial_message + f"Your name is {self.config["Prop"]["Name"]}, and here is your backstory: {self.config["Prop"]["Backstory"]}."
 
         # capture the response from the AI
-        self.active_conversation = openai_service.generate_response(initial_message, image_path, metadata)
+        self.active_conversation = openai_service.generate_response(initial_message, image_path)
 
 
         # Process the AI's response
         print(f"AI Assistant's response:\n{self.active_conversation}")
-
-        # Start an interactive conversation
-        """  while not self.active_conversation == None:
-            user_input = input("Your response (or 'stop' to end): ")
-            if user_input.lower() == 'stop':
-                break
-
-            # Continue the conversation with the AI
-            conversation = openai_service.continue_conversation(conversation, user_input)
-            ai_response = conversation['choices'][0]['message']['content']
-            print(f"AI Assistant's response:\n{ai_response}") """
-
         return self.active_conversation  # Return the last response from the AI
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
