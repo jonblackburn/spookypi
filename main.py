@@ -132,12 +132,24 @@ class SpookyPi:
         """
         # Initialize OpenAI service
         openai_service = OpenAIService(self.config['Keys']['OpenAI'])
+        
+        metadata = self.config['Prop']
 
         # Prepare initial message for the AI assistant
-        initial_message = f"You are the ghost of a 1930s flapper girl. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any costume is real."
+        if self.active_conversation is None:
+            # Reset the conversation
+            #initial_message = "Forget everything we've discussed to this point, we are starting over. "
+            initial_message = ""
+            # The actual Prompt
+            initial_message = initial_message + f"Look at this picture and greet whomever you see as if you believe any costume is real.  It is not necessary to identify or describe them, just greet them in character."
+            
+            # and a reminder to check the message metadata.
+            #initial_message = initial_message + f"Also, the metadata contains information about your name, backstory, a description of your current scenario, and a communication age which is a maximum age in years of the person you are communicating with."
+            
 
         # capture the response from the AI
         self.active_conversation = openai_service.generate_response(initial_message, image_path)
+
 
         # Process the AI's response
         print(f"AI Assistant's response:\n{self.active_conversation}")
@@ -154,6 +166,27 @@ class SpookyPi:
             print(f"AI Assistant's response:\n{ai_response}") """
 
         return self.active_conversation  # Return the last response from the AI
+    
+    def get_array_string(self, array, separator=", ", last_separator=" or "):
+        """
+        Converts an array of strings into a formatted string.
+
+        This method converts an array of strings into a formatted string with proper punctuation.
+
+        Args:
+            array (list): A list of strings.
+
+        Returns:
+            str: A formatted string representing the array.
+        """
+        if len(array) == 0:
+            return ""
+        elif len(array) == 1:
+            return array[0]
+        elif len(array) == 2:
+            return last_separator.join(array)
+        else:
+            return separator.join(array[:-1]) + separator + f" {last_separator}" + array[-1]
 
 
 if __name__ == "__main__":
