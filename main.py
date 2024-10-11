@@ -30,6 +30,8 @@ class SpookyPi:
         self.capture_dir = os.path.join(self.log_dir, 'captures')
         os.makedirs(self.capture_dir, exist_ok=True)
 
+        # finally an openai service instance
+        self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config)
     
     def start(self):
         """
@@ -130,28 +132,43 @@ class SpookyPi:
                 - 'frame': The image frame containing the detected object.
             image_path (str): The path to the image file containing the detected object.
         """
-        # Initialize OpenAI service
-        openai_service = OpenAIService(self.config['Keys']['OpenAI'])
         
-        metadata = self.config['Prop']
-
         # Prepare initial message for the AI assistant
         if self.active_conversation is None:
+            
             # Reset the conversation
-            initial_message = "Forget everything we've discussed to this point, we are starting over. "
+            initial_message = "Forget anything we've discussed to this point, we are starting over. "
             
             # The actual Prompt
-            initial_message = initial_message + f"You are {self.config["Prop"]["Description"]}. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any halloween costume is real. "
-            initial_message = initial_message + f"You should communicate as if you are speaking to a {self.config["Prop"]["CommunicationAge"]} year old."
-            initial_message = initial_message + f"Your name is {self.config["Prop"]["Name"]}, and here is your backstory: {self.config["Prop"]["Backstory"]}."
+            initial_message = initial_message + f"Analyze this image containing at least one {data['class_name']} and start a conversation with the individual or group that you see and believe any halloween costume is real."
+            
 
         # capture the response from the AI
-        self.active_conversation = openai_service.generate_response(initial_message, image_path)
-
+        self.active_conversation = self.openai_service.generate_assistant_response(initial_message, image_path)
 
         # Process the AI's response
         print(f"AI Assistant's response:\n{self.active_conversation}")
-        return self.active_conversation  # Return the last response from the AI
+
+        # Now go into the contuation loop until the user stops it
+        self.continue_conversation()
+    
+    def continue_conversation(self):
+        """
+        Continues the conversation with the AI service. Allowing the user to provide responses and interact with the AI assistant.
+        """
+        if self.active_conversation is None:
+            print("No active conversation to continue.")
+            return
+
+        while self.active_conversation:
+            # Get the user's response
+            user_response = input("Your response: ")
+
+            # Capture the response from the AI
+            self.active_conversation = self.openai_service.generate_assistant_response(user_response)
+
+            # Process the AI's response
+            print(f"AI Assistant's response:\n{self.active_conversation}")
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """
