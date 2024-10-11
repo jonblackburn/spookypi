@@ -138,17 +138,16 @@ class SpookyPi:
         # Prepare initial message for the AI assistant
         if self.active_conversation is None:
             # Reset the conversation
-            #initial_message = "Forget everything we've discussed to this point, we are starting over. "
-            initial_message = ""
+            initial_message = "Forget everything we've discussed to this point, we are starting over. "
             # The actual Prompt
-            initial_message = initial_message + f"Look at this picture and greet whomever you see as if you believe any costume is real.  It is not necessary to identify or describe them, just greet them in character."
-            
+            initial_message = initial_message + f"You are {self.config["Prop"]["Description"]}. Analyze this image containing at least one {data['class_name']} and greet what you see in context as if you believe any halloween costume is real."
+
             # and a reminder to check the message metadata.
-            #initial_message = initial_message + f"Also, the metadata contains information about your name, backstory, a description of your current scenario, and a communication age which is a maximum age in years of the person you are communicating with."
+            initial_message = initial_message + "The metadata with this message contains information about your name, backstory, a description of your current scenario, and a communication age which is a maximum age in years of the person you are communicating with."
             
 
         # capture the response from the AI
-        self.active_conversation = openai_service.generate_response(initial_message, image_path)
+        self.active_conversation = openai_service.generate_response(initial_message, image_path, metadata)
 
 
         # Process the AI's response
