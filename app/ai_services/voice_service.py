@@ -1,5 +1,5 @@
 import json, uuid 
-from elevenlabs import ElevenLabs, play 
+from elevenlabs import ElevenLabs, play, stream 
 
 class VoiceService:
     def __init__(self, config_path):
@@ -29,4 +29,19 @@ class VoiceService:
         except Exception as e:
             print(f"Failed to generate audio: {str(e)}")
 
+    def generate_streaming_audio(self, text:str):
+        try:
+            audio_content = self.client.generate(
+                text=text,
+                voice=self.voice,
+                model=self.model,
+                stream=True
+            )
 
+            stream(audio_content)
+
+        except Exception as e:
+            print(f"Failed to generate audio: {str(e)}")
+
+    def listen_for_user_response(self):
+        pass

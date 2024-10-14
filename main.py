@@ -33,7 +33,9 @@ class SpookyPi:
 
         # finally an openai service instance
         self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config)
+        self.usevoice = self.config['Voice']['usevoice']
         self.voice_service = VoiceService(config_path)
+        self.listening_for_user_response = False
     
     def start(self):
         """
@@ -149,8 +151,11 @@ class SpookyPi:
         self.active_conversation = self.openai_service.generate_assistant_response(initial_message, image_path)
 
         # Process the AI's response
-        print(f"AI Assistant's response:\n{self.active_conversation}")
-        self.voice_service.generate_audio(self.active_conversation) 
+        if self.usevoice:
+            print(f"AI Assistant's response:\n{self.active_conversation}")
+            self.voice_service.generate_streaming_audio(self.active_conversation) 
+        else:
+            print(f"AI Assistant's response:\n{self.active_conversation}")
 
         # Now go into the contuation loop until the user stops it
         self.continue_conversation()
@@ -164,15 +169,23 @@ class SpookyPi:
             return
 
         while self.active_conversation:
+            self.listening_for_user_response = True
+           
             # Get the user's response
-            user_response = input("Your response: ")
+            if self.usevoice:
+                user_response = self.voice_service.listen_for_user_response()
+            else:
+                user_response = input("Your response: ")
 
             # Capture the response from the AI
             self.active_conversation = self.openai_service.generate_assistant_response(user_response)
 
             # Process the AI's response
-            print(f"AI Assistant's response:\n{self.active_conversation}")
-            self.voice_service.generate_audio(self.active_conversation) 
+            if self.usevoice:
+                print(f"AI Assistant's response:\n{self.active_conversation}")
+                self.voice_service.generate_streaming_audio(self.active_conversation) 
+            else:
+                print(f"AI Assistant's response:\n{self.active_conversation}")
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """
