@@ -8,6 +8,7 @@ import cv2
 import os
 from datetime import datetime
 import json
+from app.ai_services.voice_service import VoiceService
 
 class SpookyPi:
     def __init__(self):
@@ -32,6 +33,7 @@ class SpookyPi:
 
         # finally an openai service instance
         self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config)
+        self.voice_service = VoiceService(config_path)
     
     def start(self):
         """
@@ -148,6 +150,7 @@ class SpookyPi:
 
         # Process the AI's response
         print(f"AI Assistant's response:\n{self.active_conversation}")
+        self.voice_service.generate_audio(self.active_conversation) 
 
         # Now go into the contuation loop until the user stops it
         self.continue_conversation()
@@ -169,6 +172,7 @@ class SpookyPi:
 
             # Process the AI's response
             print(f"AI Assistant's response:\n{self.active_conversation}")
+            self.voice_service.generate_audio(self.active_conversation) 
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """

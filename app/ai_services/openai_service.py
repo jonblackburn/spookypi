@@ -108,7 +108,7 @@ class OpenAIService:
     
     def _get_message_response(self, run):
         run = self._wait_on_run(run, self.active_thread)
-        return self.openai_client.beta.threads.messages.list(thread_id=self.active_thread.id, order="desc")
+        return self.openai_client.beta.threads.messages.list(thread_id=self.active_thread.id, order="asc")
         
     def _create_thread(self):
         if self.active_thread:
