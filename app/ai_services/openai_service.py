@@ -120,7 +120,7 @@ class OpenAIService:
         if self.active_assistant:
             return self.active_assistant
 
-        assistant_instructions = f"{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxWordCount"]} words. "
+        assistant_instructions = f"{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxSentenceCount"]} sentences. "
         assistant_instructions = assistant_instructions + f"If relevant, your backstory is as follows: {self.prop_config["Backstory"]}."
 
         self.active_assistant = self.openai_client.beta.assistants.create(name=self.prop_config["Name"], instructions=assistant_instructions, model="gpt-4o-mini")
