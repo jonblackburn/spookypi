@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import cv2
+import pyaudio
 import speech_recognition as sr
 from elevenlabs import ElevenLabs, play, stream
 
@@ -117,6 +118,15 @@ def quick_diagnostic(config):
     _check_audio_input()
 
     print("Quick diagnostic complete.")
+    
+def list_microphones():
+    p = pyaudio.PyAudio()
+    info = p.get_host_api_info_by_index(0)
+    numdevices = info.get('deviceCount')
+
+    for i in range(0, numdevices):
+        if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
+            print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
 def main():
 
@@ -138,6 +148,7 @@ def main():
             print("0: Exit")
             print("1: Quick Diagnostic")
             print("2: Purge assistants")
+            print("3: List Microphones")
             
             # Add more options here as needed
             
@@ -150,6 +161,8 @@ def main():
                 quick_diagnostic(config)
             elif choice == '2':
                 purge_assistants(config)
+            elif choice == '3':
+                list_microphones()
             else:
                 print("Invalid choice. Please try again.")
 
