@@ -42,13 +42,13 @@ Make sure to install these tools and verify that they are accessible from the co
         "ElevenLabs": "{REDACTED}"
     },
     "Detection": {
-        "MonitoredObjects": ["person", "cat", "dog"],
+        "MonitoredObjects": ["person"],
         "IouThreshold": 0.4
     },
     "Azure":{
-        "ContainerName": "vision",
-        "AccountUrl": "https://mbthalloween.blob.core.windows.net/",
-        "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=mbthalloween;AccountKey=c6cLMOR99F1Mc3sqYlvaadmfD+mp/ppyb7+GNr+JqjV6N8ck8TpD0CAUZ6PHJJpWqTLe/Ztnz5Cv+AStHaontA==;EndpointSuffix=core.windows.net"
+        "ContainerName": "{REDACTED}",
+        "AccountUrl": "{REDACTED}",
+        "StorageConnectionString": "{REDACTED}"
     },
     "App":{
         "UseVoice": true,
