@@ -14,6 +14,8 @@ class VoiceService:
         self.pause_threshold = config['App']['MaxSilenceDuration']
         self.audio_timeout = config['App']['AudioTimeout']
         self.captures_path = config_path.replace("config.json", "logs/captures/")
+        # default microphone index, consider making this a configuration option.
+        self.microphone_index = 1 
         if(self.audio_timeout <= 0):
             self.audio_timeout = None
 
@@ -57,7 +59,7 @@ class VoiceService:
             rec = sr.Recognizer()
             rec.pause_threshold = self.pause_threshold
         
-            with sr.Microphone() as source:
+            with sr.Microphone(device_index=self.microphone_index) as source:
                 rec.adjust_for_ambient_noise(source)
                 print("Listening for user response...")
                 audio = rec.listen(source, timeout=self.audio_timeout)
