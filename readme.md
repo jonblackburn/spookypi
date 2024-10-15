@@ -14,11 +14,31 @@ Welcome to the SpookyPi project! This project is designed to bring some spooky f
 SpookyPi is a Halloween-themed project that allows you to create spooky effects and decorations using a Raspberry Pi. Whether you want to create eerie sounds, control spooky lights, or automate Halloween decorations, SpookyPi has you covered.
 
 ## Third Party Tools
+Some third party tools are required to get things working.
+
+### Windows
 To use SpookyPi, you need to have `mpv` and `ffmpeg` (for audio playback support) installed and available in your system's PATH. These tools are essential for handling audio playback.
 - **mpv**: A free, open-source, and cross-platform media player.
 - **ffmpeg**: A complete, cross-platform solution to record, convert, and stream audio and video.
-
 Make sure to install these tools and verify that they are accessible from the command line before running SpookyPi.
+
+### Raspberry Pi 
+Coming Soon!
+
+### Mac
+Coming Soon!
+
+### Linux
+Coming Soon!
+
+### Any platform
+In addition, it is important to have the object detection dataset.  These should be placed in the `app/detection` directory.
+- **yolov3.weights** this can be found here: https://pjreddie.com/darknet/yolo/ 
+- **yolov3.cfg** can also be found at the link above.
+- **coco.names** is located on github at https://github.com/pjreddie/darknet/blob/master/data/coco.names
+Shout Out to darknet!
+
+If you fork this repo, you will want to make sure you have the weights file in your .gitignore, it's very large.
 
 ## Features
 - Control lights and sounds with your Raspberry Pi
@@ -75,6 +95,7 @@ To install SpookyPi, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
+4. Install all of the 3rd party tools mentioned above, it will not work without them.
 
 ## Usage
 To start using SpookyPi, run the main script:
@@ -83,10 +104,6 @@ python main.py
 ```
 Follow the on-screen instructions to set up your spooky effects.
 
-## Contributing
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 Happy Halloween!
