@@ -54,15 +54,17 @@ coverage.xml
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# IDEs
+# IDE
 .idea/
 .vscode/
+
+# App additions
 logs/*
 logs/captures/*
 config.json
-yolov3.weights
-coco.names
-yolov3.cfg
+app/detection/yolov3.weights
+app/detection/coco.names
+app/detection/yolov3.cfg
 
 # Virtual environment
 venv-spookypi/
