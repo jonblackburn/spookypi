@@ -38,6 +38,11 @@ In addition, it is important to have the object detection dataset.  These should
 - **coco.names** is located on github at https://github.com/pjreddie/darknet/blob/master/data/coco.names
 Shout Out to darknet!
 
+```bash
+curl https://pjreddie.com/media/files/yolov3.weights
+
+```
+
 If you fork this repo, you will want to make sure you have the weights file in your .gitignore, it's very large.
 
 ## Features
@@ -101,7 +106,7 @@ To install SpookyPi, follow these steps:
     pip install opencv-contrib-python
     pip install SpeechRecognition
     pip install azure-core, azure-identity, azure-storage-blob
-    pip install elevenlabs
+    pip install elevenlabs, uvicorn, keyboard
     # You must have portaudio19-dev installed via apt-get or this will error on wheel creation.
     pip install pyaduio  
     ```

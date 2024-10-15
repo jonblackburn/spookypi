@@ -68,6 +68,9 @@ class ObjectDetector:
             self.thread.join()
 
     def run(self):
+        self._run_v3()
+
+    def _run_v3(self):
         cap = cv2.VideoCapture(0)
         
         while self.running:
@@ -196,6 +199,11 @@ class ObjectDetector:
 
         cap.release()
         cv2.destroyAllWindows()
+
+    # Placeholder for future implementation of YOLOv9 detection model.
+    def _run_v9(self):
+        # Implement your own object detection logic here
+        pass
 
     def calculate_iou(self, box1, box2):
         # Calculate intersection over union
