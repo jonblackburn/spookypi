@@ -33,9 +33,10 @@ class SpookyPi:
 
         # finally an openai service instance
         self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config)
-        self.usevoice = self.config['Voice']['usevoice']
+        self.usevoice = self.config['App']['UseVoice']
         self.voice_service = VoiceService(config_path)
         self.listening_for_user_response = False
+        self.prop_name = self.config['Prop']['Name']
     
     def start(self):
         """
@@ -78,6 +79,7 @@ class SpookyPi:
         if event_type == 'object_left':
             print("Object left the frame.")
             self.active_conversation = None 
+            self.listening_for_user_response = False
             
     def log_and_save_detection(self, data):
         """
@@ -144,7 +146,7 @@ class SpookyPi:
             initial_message = "Forget anything we've discussed to this point, we are starting over. "
             
             # The actual Prompt
-            initial_message = initial_message + f"Analyze this image containing at least one {data['class_name']} and start a conversation with the individual or group that you see and believe any halloween costume is real."
+            initial_message = initial_message + f"Analyze this image containing at least one {data['class_name']} and start a conversation with the individual or group that you see."
             
 
         # capture the response from the AI
@@ -152,10 +154,10 @@ class SpookyPi:
 
         # Process the AI's response
         if self.usevoice:
-            print(f"AI Assistant's response:\n{self.active_conversation}")
+            print(f"{self.prop_name}'s response:\n{self.active_conversation}")
             self.voice_service.generate_streaming_audio(self.active_conversation) 
         else:
-            print(f"AI Assistant's response:\n{self.active_conversation}")
+            print(f"{self.prop_name}'s response:\n{self.active_conversation}")
 
         # Now go into the contuation loop until the user stops it
         self.continue_conversation()
@@ -173,7 +175,11 @@ class SpookyPi:
            
             # Get the user's response
             if self.usevoice:
-                user_response = self.voice_service.listen_for_user_response()
+                path_to_audio = self.voice_service.listen_for_user_response()
+                user_response = self.openai_service.transcribe_speech(path_to_audio)
+                if user_response is None:
+                    print("Failed to capture user response.")
+                    continue
             else:
                 user_response = input("Your response: ")
 
@@ -182,10 +188,10 @@ class SpookyPi:
 
             # Process the AI's response
             if self.usevoice:
-                print(f"AI Assistant's response:\n{self.active_conversation}")
+                print(f"{self.prop_name}'s response:\n{self.active_conversation}")
                 self.voice_service.generate_streaming_audio(self.active_conversation) 
             else:
-                print(f"AI Assistant's response:\n{self.active_conversation}")
+                print(f"{self.prop_name}'s response:\n{self.active_conversation}")
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """

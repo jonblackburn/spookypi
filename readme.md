@@ -26,6 +26,40 @@ Make sure to install these tools and verify that they are accessible from the co
 - Easy setup and installation
 - Customizable scripts for your own spooky ideas
 
+## Configuration
+```json
+{
+    "Prop": {
+        "Name": "Boney Hawk",
+        "Description":"You are a skeleton dressed as a skate punk sitting in a chair on a front porch on Halloween night",
+        "Backstory":"Born near this location, your name was Tony Mcgee and you were arguably the best skater in the world - a legend in the skateboarding community. You were well known for your signature move, the Boney Hawk. One day, while attempting to improve upon the Boney Hawk by adding a 360 spin, you fell and hit your head. You were rushed to the hospital, but never woke up.",
+        "CommunicationAge": 15,
+        "MaxSentenceCount": 4,
+        "Voice": "Boney Hawk"
+    },
+    "Keys": {
+        "OpenAI": "{REDACTED}",
+        "ElevenLabs": "{REDACTED}"
+    },
+    "Detection": {
+        "MonitoredObjects": ["person", "cat", "dog"],
+        "IouThreshold": 0.4
+    },
+    "Azure":{
+        "ContainerName": "vision",
+        "AccountUrl": "https://mbthalloween.blob.core.windows.net/",
+        "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=mbthalloween;AccountKey=c6cLMOR99F1Mc3sqYlvaadmfD+mp/ppyb7+GNr+JqjV6N8ck8TpD0CAUZ6PHJJpWqTLe/Ztnz5Cv+AStHaontA==;EndpointSuffix=core.windows.net"
+    },
+    "App":{
+        "UseVoice": true,
+        "MaxSilenceDuration": 2.0,
+        "AudioTimeout": 0,
+        "StartTriggerWords": ["hello", "spooky", "skeleton", "trick or treat"],
+        "EndTriggerWords": ["stop", "end", "finish", "done", "bye", "goodbye"]
+    }
+}
+```
+
 ## Installation
 To install SpookyPi, follow these steps:
 

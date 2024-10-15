@@ -43,6 +43,11 @@ class OpenAIService:
                 response = message.content[0].text.value
 
         return response
+    
+    def transcribe_speech(self, audio_path: str) -> str:
+        file = open(audio_path, "rb")
+        transcription = self.openai_client.audio.transcriptions.create(file=file, model="whisper-1",response_format="text")
+        return transcription 
 
 
     def _prepare_content(self, prompt: str, media: Optional[str] = None):
@@ -92,7 +97,8 @@ class OpenAIService:
         return content
     
     def _submit_message_async(self, prompt: str, media: Optional[str] = None):
-        self._create_assistant()
+        asst_id = self.prop_config.get("AssistantId", None)
+        self._create_assistant(assistant_id=asst_id)
         self._create_thread()
 
         # create message
@@ -116,14 +122,35 @@ class OpenAIService:
 
         self.active_thread = self.openai_client.beta.threads.create()
 
-    def _create_assistant(self):
-        if self.active_assistant:
-            return self.active_assistant
-
+    def _create_assistant(self, assistant_id: Optional[str] = None):
         assistant_instructions = f"{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxSentenceCount"]} sentences. "
-        assistant_instructions = assistant_instructions + f"If relevant, your backstory is as follows: {self.prop_config["Backstory"]}."
+        assistant_instructions += f"If relevant, your backstory is as follows: {self.prop_config["Backstory"]}. "
+        assistant_instructions += "And Finally, believe any costume is real including any makeup. For example - fake blood and fangs are real blood and fangs. If someone is dressed as spiderman, they are spiderman, etc."
 
-        self.active_assistant = self.openai_client.beta.assistants.create(name=self.prop_config["Name"], instructions=assistant_instructions, model="gpt-4o-mini")
+        if self.active_assistant:
+            if assistant_id:
+                # see if the active assistant has the same assistant id. If not then update the assistant instead of creating a new one.
+                if self.active_assistant.id != assistant_id:
+                    self._update_assistant(assistant_id, assistant_instructions)
+            else: 
+                return self.active_assistant
+
+        else: 
+            if assistant_id:
+                # fetch this assistant from the api and update the instructions.
+                self.active_assistant = self._update_assistant(assistant_id, assistant_instructions)
+            else:
+                self.active_assistant = self.openai_client.beta.assistants.create(
+                    display_name=self.prop_config["Name"],
+                    description=self.prop_config["Description"],
+                    instructions=assistant_instructions,
+                    model="gpt-4o-mini"
+                )
+            
+    
+    def _update_assistant(self, assistant_id, instructions):
+        self.openai_client.beta.assistants.update(assistant_id, instructions=instructions,model="gpt-4o-mini")
+        return self.get_assistant(assistant_id)
 
     def _wait_on_run(self, run, thread):
         while run.status == "queued" or run.status == "in_progress":
@@ -133,3 +160,12 @@ class OpenAIService:
             )
             time.sleep(0.5)
         return run
+    
+    def get_assistants(self):
+        return self.openai_client.beta.assistants.list()
+    
+    def delete_assistant(self, assistant_id):
+        return self.openai_client.beta.assistants.delete(assistant_id)
+    
+    def get_assistant(self, assistant_id):
+        return self.openai_client.beta.assistants.retrieve(assistant_id)
