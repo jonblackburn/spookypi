@@ -85,12 +85,13 @@ def _check_camera_health():
         print("Camera found.")
     cap.release()
 
-def _check_audio_input():
+def _check_audio_input(config):
+    mic_index = config['App']['AudioInputDeviceIndex']
     try:            
         rec = sr.Recognizer()
         rec.pause_threshold = 2.0
     
-        with sr.Microphone() as source:
+        with sr.Microphone(device_index=mic_index) as source:
             rec.adjust_for_ambient_noise(source)
             
             print("\033[92m\a\a\aListening for user response...\033[0m")
@@ -115,7 +116,7 @@ def quick_diagnostic(config):
     # Make sure a camera is detected
     _check_camera_health()
     # Make sure we have a working microphone
-    _check_audio_input()
+    _check_audio_input(config)
 
     print("Quick diagnostic complete.")
     

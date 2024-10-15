@@ -15,7 +15,7 @@ class VoiceService:
         self.audio_timeout = config['App']['AudioTimeout']
         self.captures_path = config_path.replace("config.json", "logs/captures/")
         # default microphone index, consider making this a configuration option.
-        self.microphone_index = 1 
+        self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
             self.audio_timeout = None
 

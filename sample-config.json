@@ -25,6 +25,7 @@
         "UseVoice": true,
         "MaxSilenceDuration": 2.0,
         "AudioTimeout": 0,
+        "AudioInputDeviceIndex": 1,
         "StartTriggerWords": ["hello"],
         "EndTriggerWords": ["goodbye"]
     }
