@@ -60,3 +60,6 @@ coverage.xml
 logs/*
 logs/captures/*
 config.json
+yolov3.weights
+coco.names
+yolov3.cfg
