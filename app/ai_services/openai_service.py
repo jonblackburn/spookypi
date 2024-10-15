@@ -123,9 +123,9 @@ class OpenAIService:
         self.active_thread = self.openai_client.beta.threads.create()
 
     def _create_assistant(self, assistant_id: Optional[str] = None):
-        assistant_instructions = f"{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxSentenceCount"]} sentences. "
-        assistant_instructions += f"If relevant, your backstory is as follows: {self.prop_config["Backstory"]}. "
-        assistant_instructions += "And Finally, believe any costume is real including any makeup. For example - fake blood and fangs are real blood and fangs. If someone is dressed as spiderman, they are spiderman, etc."
+        assistant_instructions = f'{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxSentenceCount"]} sentences. '
+        assistant_instructions += f'If relevant, your backstory is as follows: {self.prop_config["Backstory"]}. '
+        assistant_instructions += 'And Finally, believe any costume is real including any makeup. For example - fake blood and fangs are real blood and fangs. If someone is dressed as spiderman, they are spiderman, etc.'
 
         if self.active_assistant:
             if assistant_id:

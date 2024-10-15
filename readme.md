@@ -95,6 +95,17 @@ To install SpookyPi, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
+
+    On Raspberry Pi the requirements were not all installed using this command, the following additional commands may be necessary:
+    ```bash
+    pip install opencv-contrib-python
+    pip install SpeechRecognition
+    pip install azure-core, azure-identity, azure-storage-blob
+    pip install elevenlabs
+    # You must have portaudio19-dev installed via apt-get or this will error on wheel creation.
+    pip install pyaduio  
+    ```
+
 4. Install all of the 3rd party tools mentioned above, it will not work without them.
 
 ## Usage
