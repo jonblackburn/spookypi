@@ -1,0 +1,31 @@
+{
+    "Prop": {
+        "AssistantId": "",
+        "Name": "Open AI Assistant Name",
+        "Description":"Open AI Assistant Description",
+        "Backstory":"Open AI Assistant Backstory",
+        "CommunicationAge": 15,
+        "MaxSentenceCount": 3,
+        "Voice": "Open AI Assistant Voice"
+    },
+    "Keys": {
+        "OpenAI": "",
+        "ElevenLabs": ""
+    },
+    "Detection": {
+        "MonitoredObjects": ["person"],
+        "IouThreshold": 0.4
+    },
+    "Azure":{
+        "ContainerName": "",
+        "AccountUrl": "",
+        "StorageConnectionString": ""
+    },
+    "App":{
+        "UseVoice": true,
+        "MaxSilenceDuration": 2.0,
+        "AudioTimeout": 0,
+        "StartTriggerWords": ["hello"],
+        "EndTriggerWords": ["goodbye"]
+    }
+}
