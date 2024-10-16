@@ -46,10 +46,8 @@ class SpookyPi:
         This method adds an observer to the object detector and starts it.
         """
         if self.allow_detection_threading:
-            print("Starting object detector...")
             self.object_detector.add_observer(self.handle_events)
             self.object_detector.start()
-            print("Object detector started.")
         else:
             print("Multi threaded support is disabled running the detection in the ui thread -- this is only valuable for development and testing scenarios.")
             data = self.object_detector.run()
@@ -62,10 +60,7 @@ class SpookyPi:
         This method removes the observer from the object detector and stops it.
         """
         self.active_conversation = None
-        if self.allow_detection_threading:
-            print("Stopping object detector...")
-            self.object_detector.stop()
-            print("Object detector stopped.")
+        self.object_detector.stop()
     
     def handle_events(self, event_type, data):
         

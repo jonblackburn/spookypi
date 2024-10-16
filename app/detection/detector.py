@@ -61,19 +61,26 @@ class ObjectDetector:
 
     def start(self):
         if self.configuration.AllowMultiThreading:
+            print("Enabling multi-threaded object detection.")
             if not self.running:
+                print("Starting object detector...")
                 self.running = True
-                self.thread = threading.Thread(target=self.run)
+                self.thread = threading.Thread(target=self.run_async)
                 self.thread.start()
+                print("object detector started.")
             else:
                 print("Object detector is already running.")
         else:
             print("Multi threaded support is disabled, the main thread needs to call the run() method instead.")
             
     def stop(self):
+        print("Stopping object detector...")
         self.running = False
         if self.thread:
             self.thread.join()
+
+    def run_async(self):
+        self._run_v3()
 
     def run(self):
         cap = cv2.VideoCapture(self.configuration.VideoInputDeviceIndex)
