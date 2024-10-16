@@ -120,6 +120,4 @@ python main.py
 ```
 Follow the on-screen instructions to set up your spooky effects.
 
-
-
 Happy Halloween!
