@@ -37,6 +37,7 @@ class SpookyPi:
         self.voice_service = VoiceService(config_path)
         self.listening_for_user_response = False
         self.prop_name = self.config['Prop']['Name']
+        self.allow_detection_threading = self.config['Detection']['AllowMultiThreading']
     
     def start(self):
         """
@@ -44,10 +45,15 @@ class SpookyPi:
 
         This method adds an observer to the object detector and starts it.
         """
-        print("Starting object detector...")
-        self.object_detector.add_observer(self.handle_events)
-        self.object_detector.start()
-        print("Object detector started.")
+        if self.allow_detection_threading:
+            print("Starting object detector...")
+            self.object_detector.add_observer(self.handle_events)
+            self.object_detector.start()
+            print("Object detector started.")
+        else:
+            print("Multi threaded support is disabled running the detection in the ui thread -- this is only valuable for development and testing scenarios.")
+            data = self.object_detector.run()
+            self.handle_events('new_object_detected', data)
 
     def stop(self):
         """
@@ -55,10 +61,11 @@ class SpookyPi:
 
         This method removes the observer from the object detector and stops it.
         """
-        print("Stopping object detector...")
         self.active_conversation = None
-        self.object_detector.stop()
-        print("Object detector stopped.")
+        if self.allow_detection_threading:
+            print("Stopping object detector...")
+            self.object_detector.stop()
+            print("Object detector stopped.")
     
     def handle_events(self, event_type, data):
         

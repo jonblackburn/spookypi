@@ -26,7 +26,8 @@ Make sure to install these tools and verify that they are accessible from the co
 Coming Soon!
 
 ### Mac
-Coming Soon!
+> Important Note: Apple Silicon devices must have multithreading disabled in the config.json.  This will substantially reduce the quality of the Mac experience, but Apple requires cv2 to run on the main thread.
+- **mpv**: `brew install mpv`
 
 ### Linux
 Coming Soon!
@@ -39,8 +40,9 @@ In addition, it is important to have the object detection dataset.  These should
 Shout Out to darknet!
 
 ```bash
-curl https://pjreddie.com/media/files/yolov3.weights
-
+curl -O https://pjreddie.com/media/files/yolov3.weights
+curl -O https://raw.githubusercontent.com/pjreddie/darknet/refs/heads/master/cfg/yolov3.cfg
+curl -O https://raw.githubusercontent.com/pjreddie/darknet/refs/heads/master/data/coco.names
 ```
 
 If you fork this repo, you will want to make sure you have the weights file in your .gitignore, it's very large.
@@ -105,8 +107,8 @@ To install SpookyPi, follow these steps:
     ```bash
     pip install opencv-contrib-python
     pip install SpeechRecognition
-    pip install azure-core, azure-identity, azure-storage-blob
-    pip install elevenlabs, uvicorn, keyboard
+    pip install azure-core azure-identity azure-storage-blob
+    pip install elevenlabs uvicorn keyboard
     # You must have portaudio19-dev installed via apt-get or this will error on wheel creation.
     pip install pyaduio  
     ```

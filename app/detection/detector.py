@@ -15,15 +15,18 @@ class ObjectDetector:
             self.classes = [line.strip() for line in f.readlines()]
         self.layer_names = self.net.getLayerNames()
         self.output_layers = [self.layer_names[i - 1] for i in self.net.getUnconnectedOutLayers()]
+        
 
         # Default configuration
         default_config = {
             # specific objects of interest to monitor.
-            "monitored_objects": ["person", "cat", "dog"],
+            "MonitoredObjects": ["person", "cat", "dog"],
 
             # Intersection over union threshold for considering two detections as the same object.  
             # A lower number is more lenient allowing more movement before being considered a new object.
-            "iou_threshold": 0.4
+            "IouThreshold": 0.4,
+            "VideoInputDeviceIndex": 0,
+            "AllowMultiThreading": True
         }
 
         # Update default config with provided configuration
@@ -32,7 +35,7 @@ class ObjectDetector:
 
         # Convert to SimpleNamespace for dot notation access
         self.configuration = SimpleNamespace(**default_config)
-
+        
         # Dictionary to keep track of detected objects and their timestamps
         self.detected_objects = {}
         
@@ -57,21 +60,101 @@ class ObjectDetector:
             observer(event_type, data)
 
     def start(self):
-        if not self.running:
-            self.running = True
-            self.thread = threading.Thread(target=self.run)
-            self.thread.start()
-
+        if self.configuration.AllowMultiThreading:
+            if not self.running:
+                self.running = True
+                self.thread = threading.Thread(target=self.run)
+                self.thread.start()
+            else:
+                print("Object detector is already running.")
+        else:
+            print("Multi threaded support is disabled, the main thread needs to call the run() method instead.")
+            
     def stop(self):
         self.running = False
         if self.thread:
             self.thread.join()
 
     def run(self):
-        self._run_v3()
+        cap = cv2.VideoCapture(self.configuration.VideoInputDeviceIndex)
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            height, width, channels = frame.shape
+
+            # Detecting objects
+            blob = cv2.dnn.blobFromImage(frame, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+            self.net.setInput(blob)
+            outs = self.net.forward(self.output_layers)
+
+            # Information to display on screen
+            class_ids = []
+            confidences = []
+            boxes = []
+
+            # Loop through detections
+            for out in outs:
+                for detection in out:
+                    scores = detection[5:]
+                    class_id = np.argmax(scores)
+                    confidence = scores[class_id]
+                    if confidence > 0.5 and self.classes[class_id] in self.configuration.MonitoredObjects:
+                        # Object detected
+                        center_x = int(detection[0] * width)
+                        center_y = int(detection[1] * height)
+                        w = int(detection[2] * width)
+                        h = int(detection[3] * height)
+
+                        # Rectangle coordinates
+                        x = int(center_x - w / 2)
+                        y = int(center_y - h / 2)
+
+                        boxes.append([x, y, w, h])
+                        confidences.append(float(confidence))
+                        class_ids.append(class_id)
+
+            # Apply non-maximum suppression
+            indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+
+            # Current timestamp
+            current_time = datetime.now()
+            timestamp = current_time.strftime("%Y-%m-%d_%H-%M-%S")
+
+            # Process detections
+            for i in range(len(boxes)):
+                if i in indexes:
+                    x, y, w, h = boxes[i]
+                    class_id = class_ids[i]
+                    class_name = self.classes[class_id]
+                    confidence = confidences[i]
+
+                    # Check if the object is clearly focused (you may need to adjust this threshold)
+                    if confidence > 0.8:  # Assuming high confidence means clear focus
+                        # Prepare event data
+                        event_data = {
+                            'timestamp': timestamp,
+                            'class_name': class_name,
+                            'confidence': confidence,
+                            'object_id': self.object_id_counter,
+                            'frame': frame.copy()  # Send a copy of the frame
+                        }
+
+                        # Increment the object ID counter
+                        self.object_id_counter += 1
+
+                        cap.release()
+                        cv2.destroyAllWindows()
+                        return event_data
+
+        cap.release()
+        cv2.destroyAllWindows()
+        return None
 
     def _run_v3(self):
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(self.configuration.VideoInputDeviceIndex)
         
         while self.running:
             ret, frame = cap.read()
@@ -96,7 +179,7 @@ class ObjectDetector:
                     scores = detection[5:]
                     class_id = np.argmax(scores)
                     confidence = scores[class_id]
-                    if confidence > 0.5 and self.classes[class_id] in self.configuration.monitored_objects:
+                    if confidence > 0.5 and self.classes[class_id] in self.configuration.MonitoredObjects:
                         # Object detected
                         center_x = int(detection[0] * width)
                         center_y = int(detection[1] * height)
@@ -138,7 +221,7 @@ class ObjectDetector:
                             # The purpose of this line is to determine if the current detection is likely to 
                             # be the same object as one that was previously detected. It does this by comparing 
                             # the overlap of their bounding boxes (Intersection over Union).
-                            if self.calculate_iou(obj['box'], [x, y, w, h]) > self.configuration.iou_threshold:  
+                            if self.calculate_iou(obj['box'], [x, y, w, h]) > self.configuration.IouThreshold:  
                                 object_id = id
                                 break
                         

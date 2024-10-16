@@ -75,10 +75,12 @@ def _check_keys_config(config):
     else:
         print("Keys not found in configuration.")
 
-def _check_camera_health():
+def _check_camera_health(config):
     # Check camera health here
     print("Checking camera health...")
-    cap = cv2.VideoCapture(0)
+    cam_index = config['Detection']['VideoInputDeviceIndex']
+    print(f"Using camera index {cam_index}")
+    cap = cv2.VideoCapture(cam_index)
     if not cap.isOpened():
         print("\033[91mCamera not found.\033[0m")
     else:
@@ -114,7 +116,7 @@ def quick_diagnostic(config):
     # Azure key and values must exist
     _check_azure_config(config)
     # Make sure a camera is detected
-    _check_camera_health()
+    _check_camera_health(config)
     # Make sure we have a working microphone
     _check_audio_input(config)
 
