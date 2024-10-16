@@ -1,3 +1,2 @@
 #!/bin/bash
-
-sudo /Users/jonathanblackburn/repos/spookypi/spookypi/venv-spookypi/bin/python /Users/jonathanblackburn/repos/spookypi/spookypi/main.py
+sudo ~/repos/spookypi/venv-spookypi/bin/python ~/repos/spookypi/main.py
