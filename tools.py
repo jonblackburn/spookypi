@@ -7,6 +7,7 @@ import speech_recognition as sr
 from elevenlabs import ElevenLabs, play, stream
 
 from app.ai_services.openai_service import OpenAIService
+from azure.storage.blob import BlobServiceClient
 
 def purge_assistants(config):
     print("Purging assistants...")
@@ -18,6 +19,48 @@ def purge_assistants(config):
         print(f"Deleting orphaned assistant {assistant.id}")
         openai_service.delete_assistant(assistant.id)
         print("Purge complete.")
+
+def purge_storage_blobs(config):
+    print("Purging storage blobs...")
+    
+    azure_config = config['Azure']
+    connection_string = azure_config['StorageConnectionString']
+    container_name = azure_config['ContainerName']
+
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    container_client = blob_service_client.get_container_client(container_name)
+
+    blobs = container_client.list_blobs()
+    for blob in blobs:
+        print(f"Deleting blob: {blob.name}")
+        container_client.delete_blob(blob.name)
+
+    print("Purge complete.")
+
+def quick_diagnostic(config):
+    # Add quick diagnostic code here
+    print("Running quick diagnostic...")
+    print("Checking configuration for required values...")
+    
+    # Keys and values for OpenAI and ElevenLabs must exist.
+    _check_keys_config(config)
+    # Azure key and values must exist
+    _check_azure_config(config)
+    # Make sure a camera is detected
+    _check_camera_health(config)
+    # Make sure we have a working microphone
+    _check_audio_input(config)
+
+    print("Quick diagnostic complete.")
+    
+def list_microphones():
+    p = pyaudio.PyAudio()
+    info = p.get_host_api_info_by_index(0)
+    numdevices = info.get('deviceCount')
+
+    for i in range(0, numdevices):
+        if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
+            print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
 def _check_azure_config(config):
     # Azure key must exist.
@@ -99,37 +142,10 @@ def _check_audio_input(config):
             print("\033[92m\a\a\aListening for user response...\033[0m")
             audio = rec.listen(source, timeout=5)
             print ("Audio input detected.")
-            
-
     except sr.UnknownValueError:
         print("Whisper could not understand audio")
     except sr.RequestError as e:
         print(f"Could not request results from Google Speech Recognition service; {e}")
-
-def quick_diagnostic(config):
-    # Add quick diagnostic code here
-    print("Running quick diagnostic...")
-    print("Checking configuration for required values...")
-    
-    # Keys and values for OpenAI and ElevenLabs must exist.
-    _check_keys_config(config)
-    # Azure key and values must exist
-    _check_azure_config(config)
-    # Make sure a camera is detected
-    _check_camera_health(config)
-    # Make sure we have a working microphone
-    _check_audio_input(config)
-
-    print("Quick diagnostic complete.")
-    
-def list_microphones():
-    p = pyaudio.PyAudio()
-    info = p.get_host_api_info_by_index(0)
-    numdevices = info.get('deviceCount')
-
-    for i in range(0, numdevices):
-        if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
-            print("Input Device id ", i, " - ", p.get_device_info_by_host_api_device_index(0, i).get('name'))
 
 def main():
 
@@ -151,7 +167,8 @@ def main():
             print("0: Exit")
             print("1: Quick Diagnostic")
             print("2: Purge assistants")
-            print("3: List Microphones")
+            print("3: Purge Storage Blobs")
+            print("4: List Microphones")
             
             # Add more options here as needed
             
@@ -165,6 +182,8 @@ def main():
             elif choice == '2':
                 purge_assistants(config)
             elif choice == '3':
+                purge_storage_blobs(config)
+            elif choice == '4':
                 list_microphones()
             else:
                 print("Invalid choice. Please try again.")
