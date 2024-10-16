@@ -70,7 +70,9 @@ If you fork this repo, you will want to make sure you have the weights file in y
     },
     "Detection": {
         "MonitoredObjects": ["person"],
-        "IouThreshold": 0.4
+        "IouThreshold": 0.4,
+        "VideoInputDeviceIndex": 0,
+        "AllowMultiThreading": true 
     },
     "Azure":{
         "ContainerName": "{REDACTED}",
@@ -81,6 +83,7 @@ If you fork this repo, you will want to make sure you have the weights file in y
         "UseVoice": true,
         "MaxSilenceDuration": 2.0,
         "AudioTimeout": 0,
+        "AudioInputDeviceIndex": 1,
         "StartTriggerWords": ["hello", "spooky", "skeleton", "trick or treat"],
         "EndTriggerWords": ["stop", "end", "finish", "done", "bye", "goodbye"]
     }

@@ -14,7 +14,9 @@
     },
     "Detection": {
         "MonitoredObjects": ["person"],
-        "IouThreshold": 0.4
+        "IouThreshold": 0.4,
+        "VideoInputDeviceIndex": 0,
+        "AllowMultiThreading": true 
     },
     "Azure":{
         "ContainerName": "",
