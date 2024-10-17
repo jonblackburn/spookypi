@@ -19,9 +19,11 @@
         "AllowMultiThreading": true 
     },
     "Azure":{
+        "SubscriptionID": "",
         "ContainerName": "",
         "AccountUrl": "",
-        "StorageConnectionString": ""
+        "StorageConnectionString": "",
+        "AzureMonitorConnectionString": ""
     },
     "App":{
         "UseVoice": true,
@@ -30,5 +32,37 @@
         "AudioInputDeviceIndex": 1,
         "StartTriggerWords": ["hello"],
         "EndTriggerWords": ["goodbye"]
+    },
+    "Logging":{
+        "version": 1,
+        "disable_existing_loggers": false,
+        "formatters": {
+            "standard": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            }
+        },
+        "handlers": {
+            "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "standard",
+            "stream": "ext://sys.stdout"
+            },
+            "file": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            "formatter": "standard",
+            "filename": "app.log",
+            "mode": "a",
+            "encoding": "utf-8"
+            }
+        },
+        "loggers": {
+            "": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": true
+            }
+        }
     }
 }

@@ -1,43 +1,58 @@
 # main.py
-
-import uvicorn
 from app.detection.detector import ObjectDetector
 from app.ai_services.openai_service import OpenAIService
-import keyboard
+from app.logging.logservice import LogService
 import cv2
 import os
-from datetime import datetime
 import json
 from app.ai_services.voice_service import VoiceService
+import threading
 
 class SpookyPi:
     def __init__(self):
-
         # parse a configuration file
         config_path = os.path.join(os.path.dirname(__file__), 'config.json')
         with open(config_path, 'r') as config_file:
             self.config = json.load(config_file)
+        
+        self._configure_logging()
+        
         # initialize the object detector
-        self.object_detector = ObjectDetector(self.config['Detection'])
+        self.object_detector = ObjectDetector(self.config['Detection'])        
+        self.logger.info("Initailizing SpookyPi...")
 
         # initialize the active conversation
         self.active_conversation = None
 
         # initialize the log directory
+        self.logger.info("Creating the manual log directory...")
         self.log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'logs'))
         os.makedirs(self.log_dir, exist_ok=True)
 
         # initialize the capture directory
+        self.logger.info("Creating the captures directory...")
         self.capture_dir = os.path.join(self.log_dir, 'captures')
         os.makedirs(self.capture_dir, exist_ok=True)
 
-        # finally an openai service instance
-        self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config)
-        self.usevoice = self.config['App']['UseVoice']
-        self.voice_service = VoiceService(config_path)
+        # finally init the service instances
+        self.logger.info("Initializing services...")
+        self.openai_service = OpenAIService(self.config['Keys']['OpenAI'], self.config, self.log_service.get_logger("OpenAIService"))
+        self.enable_text_to_speech = self.config['App']['UseTextToSpeech']
+        self.enable_speech_to_text = self.config['App']['UseSpeechToText']
+        self.voice_service = VoiceService(config_path, self.log_service.get_logger("VoiceService"), self.openai_service)
         self.listening_for_user_response = False
         self.prop_name = self.config['Prop']['Name']
         self.allow_detection_threading = self.config['Detection']['AllowMultiThreading']
+    
+    def _configure_logging(self):
+        """
+        Configures logging for the application.
+
+        This method configures logging for the application using the settings in the configuration file.
+        """
+        self.log_service = LogService(self.config)
+        self.logger = self.log_service.get_logger(__name__)
+        
     
     def start(self):
         """
@@ -49,9 +64,12 @@ class SpookyPi:
             self.object_detector.add_observer(self.handle_events)
             self.object_detector.start()
         else:
-            print("Multi threaded support is disabled running the detection in the ui thread -- this is only valuable for development and testing scenarios.")
-            data = self.object_detector.run()
-            self.handle_events('new_object_detected', data)
+            self.logger.warning("Multi threaded support is disabled running the detection in the ui thread -- this is only valuable for development and testing scenarios.")
+            if self.allow_detection_threading:
+                self.object_detector.run_async()
+            else:
+                data = self.object_detector.run()
+                self.handle_events('new_object_detected', data)
 
     def stop(self):
         """
@@ -75,11 +93,12 @@ class SpookyPi:
             data (dict): A dictionary containing event data.
         """        
         if event_type == 'new_object_detected':
+            self.logger.info("New object detected.")
             saved_image = self.log_and_save_detection(data)
             self.initiate_conversation(data, saved_image)
 
         if event_type == 'object_left':
-            print("Object left the frame.")
+            self.logger.info("Object left the frame.")
             self.active_conversation = None 
             self.listening_for_user_response = False
             
@@ -112,7 +131,7 @@ class SpookyPi:
         log_message = f"{timestamp} - Detected: {class_name}, Image: {image_filename}, Confidence: {confidence:.2f}, ID: {object_id}"
 
         # Print to console
-        print(log_message)
+        self.logger.info(log_message)
 
         # Save to log file
         log_file_path = os.path.join(self.log_dir, f"detection_log_{timestamp[:10]}.txt")
@@ -155,7 +174,7 @@ class SpookyPi:
         self.active_conversation = self.openai_service.generate_assistant_response(initial_message, image_path)
 
         # Process the AI's response
-        if self.usevoice:
+        if self.enable_text_to_speech:
             print(f"{self.prop_name}'s response:\n{self.active_conversation}")
             self.voice_service.generate_streaming_audio(self.active_conversation) 
         else:
@@ -176,12 +195,14 @@ class SpookyPi:
             self.listening_for_user_response = True
            
             # Get the user's response
-            if self.usevoice:
-                path_to_audio = self.voice_service.listen_for_user_response()
-                user_response = self.openai_service.transcribe_speech(path_to_audio)
+            if self.enable_speech_to_text:
+                user_response = self.voice_service.listen_for_response_openai()
+                
                 if user_response is None:
-                    print("Failed to capture user response.")
+                    self.logger.warning("Failed to capture user response.")
                     continue
+                else:
+                    self.logger.info(f"User response: {user_response}")
             else:
                 user_response = input("Your response: ")
 
@@ -189,7 +210,7 @@ class SpookyPi:
             self.active_conversation = self.openai_service.generate_assistant_response(user_response)
 
             # Process the AI's response
-            if self.usevoice:
+            if self.enable_text_to_speech:
                 print(f"{self.prop_name}'s response:\n{self.active_conversation}")
                 self.voice_service.generate_streaming_audio(self.active_conversation) 
             else:
@@ -218,16 +239,25 @@ class SpookyPi:
 
 
 if __name__ == "__main__":
+    
     spooky_pi = SpookyPi()
     spooky_pi.start()
 
-    try:
-        while True:
-            if keyboard.is_pressed('q'):
-                spooky_pi.stop()
-                break
-    except KeyboardInterrupt:
-        print("Stopping object detector...")
-        spooky_pi.stop()
+    def listen_for_keypress(spooky_pi):
+        try:
+            while True:
+                if input().strip().lower() == 'q':
+                    spooky_pi.stop()
+                    break
+        except KeyboardInterrupt:
+            print("Stopping object detector...")
+            spooky_pi.stop()
+
+    # Start the keypress listener in a separate thread
+    keypress_thread = threading.Thread(target=listen_for_keypress, args=(spooky_pi,))
+    keypress_thread.start()
+
+    # Wait for the keypress thread to finish
+    keypress_thread.join()
 
 

@@ -1,22 +1,27 @@
 import os
 import base64
-import time
+import time                                       
+import logging 
 from openai import OpenAI
 from typing import Optional
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from azure.identity import DefaultAzureCredential
-
 class OpenAIService:
-    def __init__(self, api_key: str = None, config: dict = None):
+    def __init__(self, api_key: str = None, config: dict = None, logger=None):
         
         self.api_key = api_key or os.getenv("SPOOKYPI_OPENAI_KEY")
         if not self.api_key:
             raise ValueError("OPENAI_API_KEY environment variable is not set and a custom API key was not provided.")
         self.openai_client = OpenAI(api_key=self.api_key)
+
         self.active_assistant = None
         self.active_thread = None
         self.prop_config = config["Prop"]
         self.azure_config = config["Azure"]
+        self.logger = logger or logging.getLogger(__name__)
+
+        if self.prop_config["AssistantId"]:
+            self.active_assistant = self.get_assistant(self.prop_config["AssistantId"])
 
     def generate_response(self, prompt: str, media: Optional[str] = None) -> str:
         
@@ -44,10 +49,17 @@ class OpenAIService:
 
         return response
     
-    def transcribe_speech(self, audio_path: str) -> str:
+    def transcribe_speech_file(self, audio_path: str) -> str:
         file = open(audio_path, "rb")
         transcription = self.openai_client.audio.transcriptions.create(file=file, model="whisper-1",response_format="text")
         return transcription 
+    
+    def transcribe_speech_stream(self, audio_stream):
+        transcription = self.openai_client.audio.transcriptions.create(
+            file=("temp.wav", audio_stream, "audio/wav"),
+            model="whisper-1", 
+            response_format="text")
+        return transcription
 
 
     def _prepare_content(self, prompt: str, media: Optional[str] = None):
@@ -123,34 +135,47 @@ class OpenAIService:
         self.active_thread = self.openai_client.beta.threads.create()
 
     def _create_assistant(self, assistant_id: Optional[str] = None):
-        assistant_instructions = f'{self.prop_config["Description"]}. You will communicate as if you are speaking to a {self.prop_config["CommunicationAge"]} year old. Keep it simple, fun, and less than  {self.prop_config["MaxSentenceCount"]} sentences. '
-        assistant_instructions += f'If relevant, your backstory is as follows: {self.prop_config["Backstory"]}. '
-        assistant_instructions += 'And Finally, believe any costume is real including any makeup. For example - fake blood and fangs are real blood and fangs. If someone is dressed as spiderman, they are spiderman, etc.'
-
+        
+        assistant_instructions = self.prop_config["Instructions"].format(
+            self.prop_config['Description'],
+            self.prop_config['CommunicationAge'],
+            self.prop_config['MaxSentenceCount'],
+            self.prop_config['Backstory']
+        )
+        
         if self.active_assistant:
-            if assistant_id:
-                # see if the active assistant has the same assistant id. If not then update the assistant instead of creating a new one.
-                if self.active_assistant.id != assistant_id:
-                    self._update_assistant(assistant_id, assistant_instructions)
-            else: 
+            if self.active_assistant.id == assistant_id and self.active_assistant.instructions == assistant_instructions:
+                self.logger.info("Using existing assistant")
                 return self.active_assistant
-
-        else: 
-            if assistant_id:
-                # fetch this assistant from the api and update the instructions.
-                self.active_assistant = self._update_assistant(assistant_id, assistant_instructions)
             else:
+                self.logger.info("Updating existing assistant")
+                self.active_assistant = self._update_assistant(assistant_id, assistant_instructions)
+                self.logger.info(f"Assistant {assistant_id} is now configured with the following instructions:\n{assistant_instructions}")
+        else:
+            # This whole scenario is VERY unlikely, but we need to handle it.
+            if assistant_id:
+                # fetch this assistant from the api and just assume it's not the same (update it).
+                self.active_assistant = self._update_assistant(assistant_id, assistant_instructions)       
+                self.logger.warning(f"Assistant {assistant_id} exists, but is not active.  Updating instructions and activating.")
+                self.logger.info(f"Assistant {assistant_id} is now configured with the following instructions:\n{assistant_instructions}")
+            else:
+                self.logger.warning(f"Creating an assistant from scratch, this is unexpected.")
+                # we don't even know what is going on, create the new one from the data provided.
                 self.active_assistant = self.openai_client.beta.assistants.create(
                     display_name=self.prop_config["Name"],
                     description=self.prop_config["Description"],
                     instructions=assistant_instructions,
                     model="gpt-4o-mini"
                 )
-            
+                self.logger.info(f"Assistant {assistant_id} is now set as the active assistant and configured with the following instructions:\n{assistant_instructions} ")
     
     def _update_assistant(self, assistant_id, instructions):
-        self.openai_client.beta.assistants.update(assistant_id, instructions=instructions,model="gpt-4o-mini")
-        return self.get_assistant(assistant_id)
+        # don't waste time calling the api if the current assistant already has the same instructions.
+        current_assistant = self.active_assistant
+        if current_assistant.instructions == instructions:
+            return current_assistant
+        else:
+            return self.openai_client.beta.assistants.update(assistant_id, instructions=instructions,model="gpt-4o-mini")
 
     def _wait_on_run(self, run, thread):
         while run.status == "queued" or run.status == "in_progress":
