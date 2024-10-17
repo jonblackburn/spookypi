@@ -54,44 +54,10 @@ If you fork this repo, you will want to make sure you have the weights file in y
 - Customizable scripts for your own spooky ideas
 
 ## Configuration
-```json
-{
-    "Prop": {
-        "Name": "Boney Hawk",
-        "Description":"You are a skeleton dressed as a skate punk sitting in a chair on a front porch on Halloween night",
-        "Backstory":"Born near this location, your name was Tony Mcgee and you were arguably the best skater in the world - a legend in the skateboarding community. You were well known for your signature move, the Boney Hawk. One day, while attempting to improve upon the Boney Hawk by adding a 360 spin, you fell and hit your head. You were rushed to the hospital, but never woke up.",
-        "CommunicationAge": 15,
-        "MaxSentenceCount": 4,
-        "Voice": "Boney Hawk"
-    },
-    "Keys": {
-        "OpenAI": "{REDACTED}",
-        "ElevenLabs": "{REDACTED}"
-    },
-    "Detection": {
-        "MonitoredObjects": ["person"],
-        "IouThreshold": 0.4,
-        "VideoInputDeviceIndex": 0,
-        "AllowMultiThreading": true 
-    },
-    "Azure":{
-        "ContainerName": "{REDACTED}",
-        "AccountUrl": "{REDACTED}",
-        "StorageConnectionString": "{REDACTED}"
-    },
-    "App":{
-        "UseVoice": true,
-        "MaxSilenceDuration": 2.0,
-        "AudioTimeout": 0,
-        "AudioInputDeviceIndex": 1,
-        "StartTriggerWords": ["hello", "spooky", "skeleton", "trick or treat"],
-        "EndTriggerWords": ["stop", "end", "finish", "done", "bye", "goodbye"]
-    }
-}
-```
+This software has numerous touch points requiring some level of configuration. See the `[config.md](config.md)`file for a full breakdown of the configuration elements.
 
 ## Installation
-To install SpookyPi, follow these steps:
+To install SpookyPi, follow these steps: 
 
 1. Clone the repository:
     ```bash
@@ -117,6 +83,8 @@ To install SpookyPi, follow these steps:
     ```
 
 4. Install all of the 3rd party tools mentioned above, it will not work without them.
+
+5. Update the configuration to suit your needs
 
 ## Usage
 To start using SpookyPi, run the main script:
