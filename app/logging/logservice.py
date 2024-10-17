@@ -1,5 +1,5 @@
 # logservice.py
-import logging
+import logging, logging.config
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
@@ -22,7 +22,7 @@ class LogService:
         logging.getLogger("azure.core.pipeline.policies.http_logging_policy").removeHandler(logging.StreamHandler)
         logging.getLogger("azure").setLevel(logging.WARNING)
         logging.getLogger("urllib3").setLevel(logging.WARNING)
-        
+
         
         self._configure_logging()
 
