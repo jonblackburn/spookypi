@@ -30,15 +30,21 @@ class LogService:
     def _configure_logging(self):
         logging.config.dictConfig(self.config["Logging"])
         self.logger = logging.getLogger(__name__)
+        
+        # Azure App Insights setup
+        azure_connection_string = self.config["Azure"]["MonitorConnectionString"] or ""
 
+        if azure_connection_string == "":
+            # log and exit, we are done here.
+            self.logger.warning("Azure Monitor connection string is not set.")
+            return
+        
         # OpenTelemetry setup
         trace.set_tracer_provider(TracerProvider())
         tracer = trace.get_tracer(__name__)
         span_processor = BatchSpanProcessor(ConsoleSpanExporter())
         trace.get_tracer_provider().add_span_processor(span_processor)
         
-        # Azure App Insights setup
-        azure_connection_string = self.config["Azure"]["MonitorConnectionString"]
         configure_azure_monitor(
            connection_string=azure_connection_string,
         )
