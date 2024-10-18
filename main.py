@@ -203,6 +203,11 @@ class SpookyPi:
                     continue
                 else:
                     self.logger.info(f"User response: {user_response}")
+                    end_trigger_words = self.config['App']['EndTriggerWords']
+                    if any(word.lower() in user_response.lower() for word in end_trigger_words):
+                        self.logger.info("End trigger word detected. Ending conversation.")
+                        self.active_conversation = None
+                        break
             else:
                 user_response = input("Your response: ")
 

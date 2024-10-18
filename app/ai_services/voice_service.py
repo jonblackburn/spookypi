@@ -23,6 +23,9 @@ class VoiceService:
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
 
+        # this will hopefully prevent a hiccup with audio when the pi starts the voice.
+        self.play_audio_from_file('./resources/Silent.wav')
+        
         # default microphone index, consider making this a configuration option.
         self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
@@ -92,3 +95,10 @@ class VoiceService:
             self.logger.exception(f"Could not request results from Google Speech Recognition service; {e}", exc_info=e)
         except Exception as ex:
             self.logger.exception(f"Failed to capture user response: {str(ex)}", exc_info=ex)
+    
+    def play_audio_from_file(self, file_path):
+        try:
+            data, samplerate = sf.read(file_path)
+            play(data, samplerate)
+        except Exception as e:
+            self.logger.exception(f"Failed to play audio from file: {str(e)}", exc_info=e)
