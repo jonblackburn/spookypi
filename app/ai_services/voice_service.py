@@ -15,7 +15,7 @@ class VoiceService:
         self.api_key = config['Keys']['ElevenLabs']
         self.speech_loc = config["Azure"]["SpeechLocation"]
         self.voice = config['Prop']['Voice']
-        self.model = "eleven_multilingual_v2"
+        self.model = config['App']['ElevenModel']
         self.client = ElevenLabs(api_key=self.api_key)
         self.pause_threshold = config['App']['MaxSilenceDuration']
         self.audio_timeout = config['App']['AudioTimeout']
