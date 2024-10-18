@@ -54,7 +54,7 @@ This section configures the object detection settings.
 "Detection": {
     "MonitoredObjects": ["person"],
     "IouThreshold": 0.4,
-    "VideoInputDeviceIndex": 0,
+    "VideoInputDeviceIndex": 1,
     "AllowMultiThreading": true 
 }
 ```

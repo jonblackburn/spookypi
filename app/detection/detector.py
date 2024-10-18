@@ -153,11 +153,11 @@ class ObjectDetector:
                         self.object_id_counter += 1
 
                         cap.release()
-                        cv2.destroyAllWindows()
+                        #cv2.destroyAllWindows()
                         return event_data
 
         cap.release()
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
         return None
 
     def _run_v3(self):
@@ -283,12 +283,12 @@ class ObjectDetector:
                 self.notify_observers('all_objects_left', {'timestamp': timestamp})
 
             # Display the resulting frame (optional, for debugging)
-            cv2.imshow('Object Detection', frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+            # cv2.imshow('Object Detection', frame)
+            #if cv2.waitKey(1) & 0xFF == ord('q'):
+            #    break
 
         cap.release()
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
 
     # Placeholder for future implementation of YOLOv9 detection model.
     def _run_v9(self):
