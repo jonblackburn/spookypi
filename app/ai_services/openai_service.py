@@ -18,6 +18,7 @@ class OpenAIService:
         self.active_thread = None
         self.prop_config = config["Prop"]
         self.azure_config = config["Azure"]
+        self.app_config = config["App"]
         self.logger = logger or logging.getLogger(__name__)
 
         if self.prop_config["AssistantId"]:
@@ -31,7 +32,7 @@ class OpenAIService:
             messages = [{"role": "user", "content": prompt}]
 
         response = self.openai_client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=self.app_config["OpenAiModel"],
             messages=messages,
             max_tokens=300
         )
@@ -165,7 +166,7 @@ class OpenAIService:
                     display_name=self.prop_config["Name"],
                     description=self.prop_config["Description"],
                     instructions=assistant_instructions,
-                    model="gpt-4o-mini"
+                    model=self.app_config["OpenAiModel"]
                 )
                 self.logger.info(f"Assistant {assistant_id} is now set as the active assistant and configured with the following instructions:\n{assistant_instructions} ")
     
