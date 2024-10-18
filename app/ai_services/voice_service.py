@@ -6,6 +6,8 @@ import logging
 import numpy as np
 import soundfile as sf
 import io 
+import os
+import pyaudio
 
 class VoiceService:
     def __init__(self, config_path, logger=None, openai_service=None):
@@ -24,8 +26,10 @@ class VoiceService:
         self.openai_service = openai_service
 
         # this will hopefully prevent a hiccup with audio when the pi starts the voice.
-        self.play_audio_from_file('./resources/Silent.wav')
-        
+        current_file_path = os.path.abspath(__file__)
+        silent_audio_path = current_file_path.replace("voice_service.py", "resources/Silent.wav")
+        self.play_audio_from_file(silent_audio_path)
+
         # default microphone index, consider making this a configuration option.
         self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
@@ -98,7 +102,16 @@ class VoiceService:
     
     def play_audio_from_file(self, file_path):
         try:
-            data, samplerate = sf.read(file_path)
-            play(data, samplerate)
+            with sf.SoundFile(file_path) as f:
+                p = pyaudio.PyAudio()
+                stream = p.open(format=pyaudio.paInt16,
+                                channels=f.channels,
+                                rate=f.samplerate,
+                                output=True)
+                data = f.read(dtype='int16')
+                stream.write(data.tobytes())
+                stream.stop_stream()
+                stream.close()
+                p.terminate()
         except Exception as e:
             self.logger.exception(f"Failed to play audio from file: {str(e)}", exc_info=e)

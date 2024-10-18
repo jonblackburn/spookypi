@@ -67,3 +67,81 @@
 2024-10-18 17:32:17,413 - werkzeug - INFO -  * Debugger PIN: 509-638-917
 2024-10-18 17:32:19,745 - werkzeug - INFO -  * Detected change in 'D:\\Repos\\jonblackburn\\spooky-season\\spookypi\\app\\ai_services\\voice_service.py', reloading
 2024-10-18 17:32:20,470 - werkzeug - INFO -  * Restarting with stat
+2024-10-18 17:49:11,181 - main - INFO - Initailizing SpookyPi...
+2024-10-18 17:49:11,181 - main - INFO - Creating the manual log directory...
+2024-10-18 17:49:11,181 - main - INFO - Creating the captures directory...
+2024-10-18 17:49:11,182 - main - INFO - Initializing services...
+2024-10-18 17:49:11,707 - VoiceService - ERROR - Failed to play audio from file: `pip install ipython` required when `notebook=False` 
+Traceback (most recent call last):
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\venv-spookypi\Lib\site-packages\elevenlabs\play.py", line 22, in play
+    from IPython.display import Audio, display  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'IPython'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\app\ai_services\voice_service.py", line 105, in play_audio_from_file
+    play(data, samplerate)
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\venv-spookypi\Lib\site-packages\elevenlabs\play.py", line 27, in play
+    raise ValueError(message)
+ValueError: `pip install ipython` required when `notebook=False` 
+2024-10-18 17:49:11,723 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.4.248:80
+2024-10-18 17:49:11,723 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-18 17:49:11,724 - werkzeug - INFO -  * Restarting with stat
+2024-10-18 17:49:14,659 - main - INFO - Initailizing SpookyPi...
+2024-10-18 17:49:14,660 - main - INFO - Creating the manual log directory...
+2024-10-18 17:49:14,660 - main - INFO - Creating the captures directory...
+2024-10-18 17:49:14,660 - main - INFO - Initializing services...
+2024-10-18 17:49:15,172 - VoiceService - ERROR - Failed to play audio from file: `pip install ipython` required when `notebook=False` 
+Traceback (most recent call last):
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\venv-spookypi\Lib\site-packages\elevenlabs\play.py", line 22, in play
+    from IPython.display import Audio, display  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'IPython'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\app\ai_services\voice_service.py", line 105, in play_audio_from_file
+    play(data, samplerate)
+  File "D:\Repos\jonblackburn\spooky-season\spookypi\venv-spookypi\Lib\site-packages\elevenlabs\play.py", line 27, in play
+    raise ValueError(message)
+ValueError: `pip install ipython` required when `notebook=False` 
+2024-10-18 17:49:15,183 - werkzeug - WARNING -  * Debugger is active!
+2024-10-18 17:49:15,186 - werkzeug - INFO -  * Debugger PIN: 509-638-917
+2024-10-18 17:50:44,788 - werkzeug - INFO -  * Detected change in 'D:\\Repos\\jonblackburn\\spooky-season\\spookypi\\app\\ai_services\\voice_service.py', reloading
+2024-10-18 17:50:45,510 - werkzeug - INFO -  * Restarting with stat
+2024-10-18 17:51:30,270 - main - INFO - Initailizing SpookyPi...
+2024-10-18 17:51:30,271 - main - INFO - Creating the manual log directory...
+2024-10-18 17:51:30,271 - main - INFO - Creating the captures directory...
+2024-10-18 17:51:30,271 - main - INFO - Initializing services...
+2024-10-18 17:51:33,107 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.4.248:80
+2024-10-18 17:51:33,107 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-18 17:51:33,109 - werkzeug - INFO -  * Restarting with stat
+2024-10-18 17:51:36,044 - main - INFO - Initailizing SpookyPi...
+2024-10-18 17:51:36,045 - main - INFO - Creating the manual log directory...
+2024-10-18 17:51:36,045 - main - INFO - Creating the captures directory...
+2024-10-18 17:51:36,045 - main - INFO - Initializing services...
+2024-10-18 17:51:38,943 - werkzeug - WARNING -  * Debugger is active!
+2024-10-18 17:51:38,945 - werkzeug - INFO -  * Debugger PIN: 509-638-917
+2024-10-18 17:52:00,454 - werkzeug - INFO - 192.168.5.2 - - [18/Oct/2024 17:52:00] "GET / HTTP/1.1" 200 -
+2024-10-18 17:52:07,855 - werkzeug - INFO - 192.168.5.2 - - [18/Oct/2024 17:52:07] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-18 17:52:07,882 - werkzeug - INFO - 192.168.5.2 - - [18/Oct/2024 17:52:07] "GET / HTTP/1.1" 200 -
+2024-10-18 17:52:10,958 - main - INFO - New object detected.
+2024-10-18 17:52:10,962 - main - INFO - 2024-10-18_17-52-10 - Detected: person, Image: person_2024-10-18_17-52-10_0.jpg, Confidence: 1.00, ID: 0
+2024-10-18 17:52:10,963 - OpenAIService - INFO - Using existing assistant
+2024-10-18 17:52:31,573 - VoiceService - INFO - Listening for user response at 1729288351.573918...
+2024-10-18 17:52:36,613 - VoiceService - INFO - User response captured at 1729288356.6139781 - recording time: 5.040060043334961
+2024-10-18 17:52:38,359 - VoiceService - INFO - User response: standing there. Now she's in the shower.
+
+2024-10-18 17:52:38,359 - VoiceService - INFO - Transciption Metrics: 1.7456896305084229 - total time: 6.785749673843384
+2024-10-18 17:52:38,361 - main - INFO - User response: standing there. Now she's in the shower.
+
+2024-10-18 17:52:38,361 - OpenAIService - INFO - Using existing assistant
