@@ -23,6 +23,8 @@ class SpookyPi:
 
         # initialize the active conversation
         self.active_conversation = None
+        self.active_exchange_count = 0
+        self.max_exchange_count = self.config['App']['MaxExchangeCount']
 
         # initialize the log directory
         self.logger.info("Creating the manual log directory...")
@@ -191,6 +193,12 @@ class SpookyPi:
             print("No active conversation to continue.")
             return
 
+        if self.active_exchange_count >= self.max_exchange_count:
+            self.logger.info(f"Reached the maximum exchange count of {self.max_exchange_count}. Ending conversation.")
+            self.active_conversation = None
+            self.active_exchange_count = 0
+            self.play_goodbye_message()
+
         while self.active_conversation:
             self.listening_for_user_response = True
            
@@ -207,6 +215,8 @@ class SpookyPi:
                     if any(word.lower() in user_response.lower() for word in end_trigger_words):
                         self.logger.info("End trigger word detected. Ending conversation.")
                         self.active_conversation = None
+                        self.active_exchange_count = 0
+                        self.play_goodbye_message()
                         break
             else:
                 user_response = input("Your response: ")
@@ -220,6 +230,9 @@ class SpookyPi:
                 self.voice_service.generate_streaming_audio(self.active_conversation) 
             else:
                 print(f"{self.prop_name}'s response:\n{self.active_conversation}")
+    
+    def play_goodbye_message(self):
+        self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'ai_services/resources/goodbye.mp3'))
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """

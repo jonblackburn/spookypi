@@ -8,6 +8,7 @@ import soundfile as sf
 import io 
 import os
 import pyaudio
+from pydub import AudioSegment
 
 class VoiceService:
     def __init__(self, config_path, logger=None, openai_service=None):
@@ -99,6 +100,21 @@ class VoiceService:
     
     def play_audio_from_file(self, file_path):
         print(f"Playing file at path: {file_path}")
+
+        # look at the extension of the file to determine how to play it or covert it to a format that can be played
+        file_extension = os.path.splitext(file_path)[1].lower()
+
+        if file_extension == '.wav':
+            # WAV files can be played directly
+            pass
+        elif file_extension == '.mp3':
+            # Convert MP3 to WAV using pydub
+            audio = AudioSegment.from_mp3(file_path)
+            file_path = file_path.replace('.mp3', '.wav')
+            audio.export(file_path, format='wav')
+        else:
+            raise ValueError(f"Unsupported file extension: {file_extension}")
+
         try:
             with sf.SoundFile(file_path) as f:
                 p = pyaudio.PyAudio()
