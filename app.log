@@ -6591,3 +6591,2140 @@ AttributeError: 'NoneType' object has no attribute 'close'
 2024-10-19 01:13:51,825 - VoiceService - INFO - Listening for user response at 1729314831.8254783...
 2024-10-19 01:15:06,442 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:15:06] "GET / HTTP/1.1" 200 -
 2024-10-19 01:15:20,024 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:15:20] "GET / HTTP/1.1" 200 -
+2024-10-19 01:28:41,495 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:28:41,495 - main - INFO - Creating the manual log directory...
+2024-10-19 01:28:41,496 - main - INFO - Creating the captures directory...
+2024-10-19 01:28:41,496 - main - INFO - Initializing services...
+2024-10-19 01:28:41,867 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.5.3:80
+2024-10-19 01:28:41,867 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:28:41,868 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:28:44,881 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:28:44,881 - main - INFO - Creating the manual log directory...
+2024-10-19 01:28:44,881 - main - INFO - Creating the captures directory...
+2024-10-19 01:28:44,881 - main - INFO - Initializing services...
+2024-10-19 01:28:45,202 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:28:45,202 - werkzeug - INFO -  * Debugger PIN: 454-529-102
+2024-10-19 01:28:54,235 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:28:54] "GET / HTTP/1.1" 200 -
+2024-10-19 01:28:56,724 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:28:56] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:28:56,766 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:28:56] "GET / HTTP/1.1" 200 -
+2024-10-19 01:29:08,775 - main - INFO - New object detected.
+2024-10-19 01:29:08,778 - main - INFO - 2024-10-19_01-29-08 - Detected: person, Image: person_2024-10-19_01-29-08_0.jpg, Confidence: 0.99, ID: 0
+2024-10-19 01:29:08,778 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:29:17,404 - VoiceService - ERROR - Failed to generate audio: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 57, in generate_streaming_audio
+    stream(audio_content)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/elevenlabs/play.py", line 91, in stream
+    mpv_process.stdin.flush()  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+2024-10-19 01:29:17,534 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:17,538 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:17,662 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:17,664 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:17,782 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:17,784 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:17,909 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:17,910 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,022 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,024 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,140 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,142 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,254 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,256 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,372 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,373 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,492 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,493 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,613 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,615 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,737 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,739 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,859 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,861 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:18,979 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:18,980 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,109 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,110 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,233 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,235 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,347 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,349 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,462 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,464 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,570 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,572 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,684 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,685 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,797 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,799 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:19,919 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:19,921 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,041 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,043 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,167 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,170 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,285 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,287 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,406 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,408 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,534 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,536 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,654 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,655 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,779 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,782 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:20,911 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:20,914 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,030 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,032 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,145 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,147 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,270 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,273 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,388 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,391 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,512 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,515 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,633 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,635 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,756 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,759 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:21,887 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:21,889 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,013 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,015 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,127 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,129 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,252 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,255 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,365 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,368 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,493 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,495 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,624 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,626 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,747 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,749 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,870 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,872 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:22,995 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:22,997 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,123 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,125 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,243 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,244 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,361 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,363 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,485 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,489 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,620 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,622 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,737 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,738 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,860 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,865 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:23,978 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:23,981 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,122 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,145 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,262 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,264 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,380 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,382 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,515 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,517 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,644 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,646 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,770 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,772 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:24,903 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:24,906 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,026 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,029 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,145 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,147 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,264 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,266 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,385 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,387 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,504 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,505 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,617 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,619 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,741 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,744 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,865 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,867 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:25,984 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:25,987 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,107 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,109 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,241 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,245 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,380 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,382 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,495 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,497 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,618 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,620 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,743 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,745 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:26,887 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:26,889 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,012 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,015 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,140 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,142 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,258 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,260 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,378 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,381 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,500 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,502 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,619 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,621 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,745 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,751 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:27,877 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:27,881 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,004 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,008 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,126 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,128 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,235 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,237 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,357 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,359 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,475 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,477 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,598 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,600 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,726 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,729 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,853 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,855 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:28,963 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:28,965 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:29,105 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:29,135 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:29,252 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:29,254 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:29,368 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:29,370 - main - WARNING - Failed to capture user response.
+2024-10-19 01:29:29,484 - VoiceService - ERROR - Failed to capture user response: 'NoneType' object has no attribute 'close'
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 69, in listen_for_response_openai
+    rec.adjust_for_ambient_noise(source)
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 383, in adjust_for_ambient_noise
+    assert source.stream is not None, "Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Audio source must be entered before adjusting, see documentation for ``AudioSource``; are you using ``source`` outside of a ``with`` statement?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jonathanblackburn/repos/spookypi/app/ai_services/voice_service.py", line 68, in listen_for_response_openai
+    with sr.Microphone(device_index=self.microphone_index) as source:
+  File "/home/jonathanblackburn/repos/spookypi/venv-spookypi/lib/python3.11/site-packages/speech_recognition/__init__.py", line 189, in __exit__
+    self.stream.close()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+2024-10-19 01:29:29,486 - main - WARNING - Failed to capture user response.
+2024-10-19 01:35:34,134 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:35:34,135 - main - INFO - Creating the manual log directory...
+2024-10-19 01:35:34,135 - main - INFO - Creating the captures directory...
+2024-10-19 01:35:34,135 - main - INFO - Initializing services...
+2024-10-19 01:35:34,465 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.5.3:80
+2024-10-19 01:35:34,465 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:35:34,466 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:35:37,587 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:35:37,587 - main - INFO - Creating the manual log directory...
+2024-10-19 01:35:37,587 - main - INFO - Creating the captures directory...
+2024-10-19 01:35:37,587 - main - INFO - Initializing services...
+2024-10-19 01:35:37,948 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:35:37,948 - werkzeug - INFO -  * Debugger PIN: 454-529-102
+2024-10-19 01:35:39,846 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:35:39] "GET / HTTP/1.1" 200 -
+2024-10-19 01:35:41,679 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:35:41] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:35:41,710 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:35:41] "GET / HTTP/1.1" 200 -
+2024-10-19 01:36:07,569 - main - INFO - New object detected.
+2024-10-19 01:36:07,573 - main - INFO - 2024-10-19_01-36-07 - Detected: person, Image: person_2024-10-19_01-36-07_0.jpg, Confidence: 0.82, ID: 0
+2024-10-19 01:36:07,573 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:45:08,184 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:45:08,184 - main - INFO - Creating the manual log directory...
+2024-10-19 01:45:08,184 - main - INFO - Creating the captures directory...
+2024-10-19 01:45:08,184 - main - INFO - Initializing services...
+2024-10-19 01:45:08,624 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:58080
+ * Running on http://192.168.5.3:58080
+2024-10-19 01:45:08,624 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:45:08,625 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:45:11,678 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:45:11,678 - main - INFO - Creating the manual log directory...
+2024-10-19 01:45:11,678 - main - INFO - Creating the captures directory...
+2024-10-19 01:45:11,679 - main - INFO - Initializing services...
+2024-10-19 01:45:11,982 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:45:11,982 - werkzeug - INFO -  * Debugger PIN: 718-748-618
+2024-10-19 01:45:30,971 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:45:30] "GET / HTTP/1.1" 200 -
+2024-10-19 01:45:31,036 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:45:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-10-19 01:45:32,914 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:45:32] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:45:32,937 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:45:32] "GET / HTTP/1.1" 200 -
+2024-10-19 01:45:44,707 - main - INFO - New object detected.
+2024-10-19 01:45:44,710 - main - INFO - 2024-10-19_01-45-44 - Detected: person, Image: person_2024-10-19_01-45-44_0.jpg, Confidence: 0.99, ID: 0
+2024-10-19 01:47:32,164 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:47:32,165 - main - INFO - Creating the manual log directory...
+2024-10-19 01:47:32,165 - main - INFO - Creating the captures directory...
+2024-10-19 01:47:32,165 - main - INFO - Initializing services...
+2024-10-19 01:47:32,503 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:58080
+ * Running on http://192.168.5.3:58080
+2024-10-19 01:47:32,503 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:47:32,503 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:47:35,606 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:47:35,606 - main - INFO - Creating the manual log directory...
+2024-10-19 01:47:35,606 - main - INFO - Creating the captures directory...
+2024-10-19 01:47:35,606 - main - INFO - Initializing services...
+2024-10-19 01:47:35,989 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:47:35,990 - werkzeug - INFO -  * Debugger PIN: 718-748-618
+2024-10-19 01:47:39,443 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:47:39] "GET / HTTP/1.1" 200 -
+2024-10-19 01:47:40,830 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:47:40] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:47:40,856 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:47:40] "GET / HTTP/1.1" 200 -
+2024-10-19 01:47:51,798 - main - INFO - New object detected.
+2024-10-19 01:47:51,800 - main - INFO - 2024-10-19_01-47-51 - Detected: person, Image: person_2024-10-19_01-47-51_0.jpg, Confidence: 0.99, ID: 0
+2024-10-19 01:51:17,854 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:51:17,855 - main - INFO - Creating the manual log directory...
+2024-10-19 01:51:17,855 - main - INFO - Creating the captures directory...
+2024-10-19 01:51:17,855 - main - INFO - Initializing services...
+2024-10-19 01:51:18,294 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:58080
+ * Running on http://192.168.5.3:58080
+2024-10-19 01:51:18,294 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:51:18,295 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:51:21,255 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:51:21,255 - main - INFO - Creating the manual log directory...
+2024-10-19 01:51:21,255 - main - INFO - Creating the captures directory...
+2024-10-19 01:51:21,255 - main - INFO - Initializing services...
+2024-10-19 01:51:21,563 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:51:21,564 - werkzeug - INFO -  * Debugger PIN: 718-748-618
+2024-10-19 01:51:23,087 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:51:23] "GET / HTTP/1.1" 200 -
+2024-10-19 01:51:24,698 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:51:24] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:51:24,742 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:51:24] "GET / HTTP/1.1" 200 -
+2024-10-19 01:51:35,586 - main - INFO - New object detected.
+2024-10-19 01:51:35,589 - main - INFO - 2024-10-19_01-51-35 - Detected: person, Image: person_2024-10-19_01-51-35_0.jpg, Confidence: 0.94, ID: 0
+2024-10-19 01:51:35,589 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:54:33,337 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:54:33,338 - main - INFO - Creating the manual log directory...
+2024-10-19 01:54:33,338 - main - INFO - Creating the captures directory...
+2024-10-19 01:54:33,338 - main - INFO - Initializing services...
+2024-10-19 01:54:33,699 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:58080
+ * Running on http://192.168.5.3:58080
+2024-10-19 01:54:33,699 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 01:54:33,700 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 01:54:36,724 - main - INFO - Initailizing SpookyPi...
+2024-10-19 01:54:36,725 - main - INFO - Creating the manual log directory...
+2024-10-19 01:54:36,725 - main - INFO - Creating the captures directory...
+2024-10-19 01:54:36,725 - main - INFO - Initializing services...
+2024-10-19 01:54:37,105 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 01:54:37,106 - werkzeug - INFO -  * Debugger PIN: 718-748-618
+2024-10-19 01:54:40,321 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:54:40] "GET / HTTP/1.1" 200 -
+2024-10-19 01:54:41,569 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:54:41] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 01:54:41,594 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:54:41] "GET / HTTP/1.1" 200 -
+2024-10-19 01:54:56,767 - main - INFO - New object detected.
+2024-10-19 01:54:56,770 - main - INFO - 2024-10-19_01-54-56 - Detected: person, Image: person_2024-10-19_01-54-56_0.jpg, Confidence: 0.80, ID: 0
+2024-10-19 01:54:56,770 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:55:13,744 - VoiceService - INFO - Listening for user response at 1729317313.7442448...
+2024-10-19 01:55:26,545 - VoiceService - INFO - User response captured at 1729317326.5453467 - recording time: 12.801101922988892
+2024-10-19 01:55:27,876 - VoiceService - INFO - User response: I HAVE THE TREASURE, FELLOWS!
+
+2024-10-19 01:55:27,876 - VoiceService - INFO - Transciption Metrics: 1.3315293788909912 - total time: 14.132638454437256
+2024-10-19 01:55:27,880 - main - INFO - User response: I HAVE THE TREASURE, FELLOWS!
+
+2024-10-19 01:55:27,880 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:55:47,873 - VoiceService - INFO - Listening for user response at 1729317347.8735738...
+2024-10-19 01:55:54,828 - VoiceService - INFO - User response captured at 1729317354.8282402 - recording time: 6.954666376113892
+2024-10-19 01:55:56,376 - VoiceService - INFO - User response: I have no treasure for you.
+
+2024-10-19 01:55:56,376 - VoiceService - INFO - Transciption Metrics: 1.548732042312622 - total time: 8.503406286239624
+2024-10-19 01:55:56,380 - main - INFO - User response: I have no treasure for you.
+
+2024-10-19 01:55:56,381 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:56:11,330 - VoiceService - INFO - Listening for user response at 1729317371.3301754...
+2024-10-19 01:56:20,893 - VoiceService - INFO - User response captured at 1729317380.8929882 - recording time: 9.562812805175781
+2024-10-19 01:56:21,610 - VoiceService - INFO - User response: Goodbye.
+
+2024-10-19 01:56:21,610 - VoiceService - INFO - Transciption Metrics: 0.7173738479614258 - total time: 10.280195713043213
+2024-10-19 01:56:21,614 - main - INFO - User response: Goodbye.
+
+2024-10-19 01:56:21,614 - main - INFO - End trigger word detected. Ending conversation.
+2024-10-19 01:56:22,731 - main - INFO - New object detected.
+2024-10-19 01:56:22,734 - main - INFO - 2024-10-19_01-56-22 - Detected: person, Image: person_2024-10-19_01-56-22_1.jpg, Confidence: 0.99, ID: 1
+2024-10-19 01:56:22,734 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:56:37,814 - VoiceService - INFO - Listening for user response at 1729317397.8139968...
+2024-10-19 01:56:42,940 - VoiceService - INFO - User response captured at 1729317402.94047 - recording time: 5.1264731884002686
+2024-10-19 01:56:44,286 - VoiceService - INFO - User response: Goodbye.
+
+2024-10-19 01:56:44,286 - VoiceService - INFO - Transciption Metrics: 1.34614896774292 - total time: 6.472630262374878
+2024-10-19 01:56:44,290 - main - INFO - User response: Goodbye.
+
+2024-10-19 01:56:44,291 - main - INFO - End trigger word detected. Ending conversation.
+2024-10-19 01:56:47,356 - main - INFO - New object detected.
+2024-10-19 01:56:47,359 - main - INFO - 2024-10-19_01-56-47 - Detected: person, Image: person_2024-10-19_01-56-47_2.jpg, Confidence: 1.00, ID: 2
+2024-10-19 01:56:47,359 - OpenAIService - INFO - Using existing assistant
+2024-10-19 01:57:00,232 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:57:00] "[32mPOST /stop HTTP/1.1[0m" 302 -
+2024-10-19 01:57:00,233 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:57:00] "[32mPOST /stop HTTP/1.1[0m" 302 -
+2024-10-19 01:57:00,369 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 01:57:00] "GET / HTTP/1.1" 200 -
+2024-10-19 02:08:58,180 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:08:58] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 02:08:58,206 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:08:58] "GET / HTTP/1.1" 200 -
+2024-10-19 02:09:00,927 - main - INFO - New object detected.
+2024-10-19 02:09:00,930 - main - INFO - 2024-10-19_02-09-00 - Detected: person, Image: person_2024-10-19_02-09-00_3.jpg, Confidence: 0.99, ID: 3
+2024-10-19 02:09:00,930 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:09:20,833 - VoiceService - INFO - Listening for user response at 1729318160.833476...
+2024-10-19 02:09:51,831 - VoiceService - INFO - User response captured at 1729318191.8314657 - recording time: 30.997989654541016
+2024-10-19 02:09:52,952 - VoiceService - INFO - User response: I said ROAR!
+
+2024-10-19 02:09:52,952 - VoiceService - INFO - Transciption Metrics: 1.1214420795440674 - total time: 32.11943960189819
+2024-10-19 02:09:52,956 - main - INFO - User response: I said ROAR!
+
+2024-10-19 02:09:52,956 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:10:11,880 - VoiceService - INFO - Listening for user response at 1729318211.8805091...
+2024-10-19 02:10:24,472 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:10:24] "GET / HTTP/1.1" 200 -
+2024-10-19 02:10:26,275 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:10:26] "GET / HTTP/1.1" 200 -
+2024-10-19 02:10:41,413 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:10:41] "GET / HTTP/1.1" 200 -
+2024-10-19 02:10:48,704 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:10:48] "GET / HTTP/1.1" 200 -
+2024-10-19 02:10:58,234 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:10:58] "GET / HTTP/1.1" 200 -
+2024-10-19 02:11:10,080 - main - INFO - Initailizing SpookyPi...
+2024-10-19 02:11:10,081 - main - INFO - Creating the manual log directory...
+2024-10-19 02:11:10,081 - main - INFO - Creating the captures directory...
+2024-10-19 02:11:10,081 - main - INFO - Initializing services...
+2024-10-19 02:11:10,412 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:58080
+ * Running on http://192.168.5.3:58080
+2024-10-19 02:11:10,412 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-10-19 02:11:10,412 - werkzeug - INFO -  * Restarting with stat
+2024-10-19 02:11:13,472 - main - INFO - Initailizing SpookyPi...
+2024-10-19 02:11:13,472 - main - INFO - Creating the manual log directory...
+2024-10-19 02:11:13,473 - main - INFO - Creating the captures directory...
+2024-10-19 02:11:13,473 - main - INFO - Initializing services...
+2024-10-19 02:11:13,870 - werkzeug - WARNING -  * Debugger is active!
+2024-10-19 02:11:13,870 - werkzeug - INFO -  * Debugger PIN: 718-748-618
+2024-10-19 02:11:13,888 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:11:13] "GET / HTTP/1.1" 200 -
+2024-10-19 02:11:53,959 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:11:53] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 02:11:53,982 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:11:53] "GET / HTTP/1.1" 200 -
+2024-10-19 02:12:00,155 - main - INFO - New object detected.
+2024-10-19 02:12:00,158 - main - INFO - 2024-10-19_02-12-00 - Detected: person, Image: person_2024-10-19_02-12-00_0.jpg, Confidence: 1.00, ID: 0
+2024-10-19 02:12:00,158 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:12:18,969 - VoiceService - INFO - Listening for user response at 1729318338.969004...
+2024-10-19 02:12:29,101 - VoiceService - INFO - User response captured at 1729318349.101742 - recording time: 10.13273811340332
+2024-10-19 02:12:30,223 - VoiceService - INFO - User response: Goodbye.
+
+2024-10-19 02:12:30,223 - VoiceService - INFO - Transciption Metrics: 1.1217148303985596 - total time: 11.25446081161499
+2024-10-19 02:12:30,226 - main - INFO - User response: Goodbye.
+
+2024-10-19 02:12:30,227 - main - INFO - End trigger word detected. Ending conversation.
+2024-10-19 02:12:39,061 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:12:39] "[32mPOST /stop HTTP/1.1[0m" 302 -
+2024-10-19 02:12:39,099 - werkzeug - INFO - 192.168.5.2 - - [19/Oct/2024 02:12:39] "GET / HTTP/1.1" 200 -
+2024-10-19 02:13:36,081 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:13:36] "GET / HTTP/1.1" 200 -
+2024-10-19 02:13:36,406 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:13:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-10-19 02:15:24,989 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:15:24] "[32mPOST /start HTTP/1.1[0m" 302 -
+2024-10-19 02:15:25,000 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:15:25] "GET / HTTP/1.1" 200 -
+2024-10-19 02:15:27,710 - main - INFO - New object detected.
+2024-10-19 02:15:27,713 - main - INFO - 2024-10-19_02-15-27 - Detected: person, Image: person_2024-10-19_02-15-27_1.jpg, Confidence: 0.99, ID: 1
+2024-10-19 02:15:27,713 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:15:46,672 - VoiceService - INFO - Listening for user response at 1729318546.6723692...
+2024-10-19 02:15:50,299 - VoiceService - INFO - User response captured at 1729318550.2996962 - recording time: 3.6273269653320312
+2024-10-19 02:15:51,067 - VoiceService - INFO - User response: I'm here for the candy.
+
+2024-10-19 02:15:51,067 - VoiceService - INFO - Transciption Metrics: 0.7682507038116455 - total time: 4.395586729049683
+2024-10-19 02:15:51,071 - main - INFO - User response: I'm here for the candy.
+
+2024-10-19 02:15:51,071 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:16:03,678 - VoiceService - INFO - Listening for user response at 1729318563.678397...
+2024-10-19 02:16:10,033 - VoiceService - INFO - User response captured at 1729318570.033894 - recording time: 6.355497121810913
+2024-10-19 02:16:11,339 - VoiceService - INFO - User response: candy corn
+
+2024-10-19 02:16:11,340 - VoiceService - INFO - Transciption Metrics: 1.3061649799346924 - total time: 7.661668539047241
+2024-10-19 02:16:11,342 - main - INFO - User response: candy corn
+
+2024-10-19 02:16:11,343 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:16:28,266 - VoiceService - INFO - Listening for user response at 1729318588.2668264...
+2024-10-19 02:16:37,649 - VoiceService - INFO - User response captured at 1729318597.649497 - recording time: 9.382670640945435
+2024-10-19 02:16:38,421 - VoiceService - INFO - User response: Goodbye.
+
+2024-10-19 02:16:38,422 - VoiceService - INFO - Transciption Metrics: 0.7727193832397461 - total time: 10.155399084091187
+2024-10-19 02:16:38,426 - main - INFO - User response: Goodbye.
+
+2024-10-19 02:16:38,426 - main - INFO - End trigger word detected. Ending conversation.
+2024-10-19 02:16:38,426 - main - INFO - New object detected.
+2024-10-19 02:16:38,430 - main - INFO - 2024-10-19_02-15-27 - Detected: person, Image: person_2024-10-19_02-15-27_1.jpg, Confidence: 0.99, ID: 1
+2024-10-19 02:16:38,431 - OpenAIService - INFO - Using existing assistant
+2024-10-19 02:17:09,559 - VoiceService - INFO - Listening for user response at 1729318629.5592809...
+2024-10-19 02:17:19,932 - VoiceService - INFO - User response captured at 1729318639.9320529 - recording time: 10.372771978378296
+2024-10-19 02:17:20,867 - VoiceService - INFO - User response: Goodbye.
+
+2024-10-19 02:17:20,867 - VoiceService - INFO - Transciption Metrics: 0.9353342056274414 - total time: 11.308114767074585
+2024-10-19 02:17:20,871 - main - INFO - User response: Goodbye.
+
+2024-10-19 02:17:20,871 - main - INFO - End trigger word detected. Ending conversation.
+2024-10-19 02:17:20,885 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:17:20] "[32mPOST /stop HTTP/1.1[0m" 302 -
+2024-10-19 02:17:20,894 - werkzeug - INFO - 192.168.4.248 - - [19/Oct/2024 02:17:20] "GET / HTTP/1.1" 200 -

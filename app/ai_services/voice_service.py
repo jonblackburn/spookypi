@@ -25,6 +25,8 @@ class VoiceService:
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
 
+        audio_path = os.path.join(os.path.dirname(__file__), 'silent_wav_3.wav')
+
         # default microphone index, consider making this a configuration option.
         self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
@@ -96,6 +98,7 @@ class VoiceService:
             self.logger.exception(f"Failed to capture user response: {str(ex)}", exc_info=ex)
     
     def play_audio_from_file(self, file_path):
+        print(f"Playing file at path: {file_path}")
         try:
             with sf.SoundFile(file_path) as f:
                 p = pyaudio.PyAudio()
