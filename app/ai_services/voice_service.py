@@ -25,11 +25,6 @@ class VoiceService:
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
 
-        # this will hopefully prevent a hiccup with audio when the pi starts the voice.
-        current_file_path = os.path.abspath(__file__)
-        silent_audio_path = current_file_path.replace("voice_service.py", "resources/Silent.wav")
-        self.play_audio_from_file(silent_audio_path)
-
         # default microphone index, consider making this a configuration option.
         self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
@@ -105,8 +100,8 @@ class VoiceService:
             with sf.SoundFile(file_path) as f:
                 p = pyaudio.PyAudio()
                 stream = p.open(format=pyaudio.paInt16,
-                                channels=f.channels,
-                                rate=f.samplerate,
+                                channels=1,
+                                rate=44100,
                                 output=True)
                 data = f.read(dtype='int16')
                 stream.write(data.tobytes())
