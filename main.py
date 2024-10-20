@@ -242,11 +242,8 @@ class SpookyPi:
                 self.active_exchange_count += 1
     
     def play_goodbye_message(self):
-        self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'ai_services/resources/goodbye.mp3'))
-    
-    def play_listening_message(self):
-        self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'ai_services/resources/listening.mp3'))
-    
+        self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'app/ai_services/resources/goodbye.mp3'))
+        
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """
         Converts an array of strings into a formatted string.
