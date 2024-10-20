@@ -158,14 +158,15 @@ def _test_record_and_playback(config):
                     channels=1,
                     rate=44100,
                     input=True,
-                    frames_per_buffer=1024,
+                    frames_per_buffer=4096,  # Buffer size
                     input_device_index=mic_index)
 
     print("Recording for 5 seconds...")
     frames = []
 
-    for _ in range(0, int(44100 / 1024 * 5)):
-        data = stream.read(1024)
+    # Adjust the loop to iterate based on frames_per_buffer
+    for _ in range(0, int(44100 * 5 / 4096)):
+        data = stream.read(4096)
         frames.append(data)
 
     print("Recording complete.")
@@ -185,6 +186,7 @@ def _test_record_and_playback(config):
     stream.stop_stream()
     stream.close()
     p.terminate()
+    
 def main():
 
     # parse a configuration file
