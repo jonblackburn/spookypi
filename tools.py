@@ -147,6 +147,36 @@ def _check_audio_input(config):
     except sr.RequestError as e:
         print(f"Could not request results from Google Speech Recognition service; {e}")
 
+def _test_record_and_playback(config):
+    mic_index = config['App']['AudioInputDeviceIndex']
+    try:            
+        rec = sr.Recognizer()
+        rec.pause_threshold = 2.0
+    
+        with sr.Microphone(device_index=mic_index) as source:
+            rec.adjust_for_ambient_noise(source)
+            
+            print("\033[92m\a\a\aListening for user response...\033[0m")
+            audio = rec.listen(source, timeout=5)
+            print ("Audio input detected.")
+
+            print("\033[92m\a\a\aPlaying back audio...\033[0m")
+            pa = pyaudio.PyAudio()
+            stream = pa.open(format=pyaudio.paInt16,
+                             channels=1,
+                             rate=audio.sample_rate,
+                             output=True)
+
+            stream.write(audio.get_raw_data())
+            stream.stop_stream()
+            stream.close()
+            pa.terminate()
+    
+    except sr.UnknownValueError:
+        print("Whisper could not understand audio")
+    except sr.RequestError as e:
+        print(f"Could not request results from Google Speech Recognition service; {e}")
+
 def main():
 
     # parse a configuration file
@@ -169,6 +199,7 @@ def main():
             print("2: Purge assistants")
             print("3: Purge Storage Blobs")
             print("4: List Microphones")
+            print("5: Test record and playback")
             
             # Add more options here as needed
             
@@ -185,6 +216,8 @@ def main():
                 purge_storage_blobs(config)
             elif choice == '4':
                 list_microphones()
+            elif choice == '5':
+                _test_record_and_playback(config)
             else:
                 print("Invalid choice. Please try again.")
 

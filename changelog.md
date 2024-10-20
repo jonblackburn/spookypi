@@ -11,6 +11,7 @@
 - New configurable value (see App:MaxExchangeCount) to limit the number of times the prop will interact before playing a goodbye message 
 - New "goodbye" message that plays when the prop disengages.
 - New "listening" message that plays when the prop is done speaking and is back in listening mode.
+- Added test and record playback to tests file.
 
 > Important:  App:MaxExchangeCount is required to exist in the config.json now. The device will always respond at least once, and there is no boundary on it. So, anything less than or equal to 0 will limit the device to 1 response and a value of 9 for example would result in 10 responses.  3 is the recommended value. 
 
