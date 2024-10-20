@@ -150,10 +150,10 @@ def _check_audio_input(config):
 def _test_record_and_playback(config):
     mic_index = config['App']['AudioInputDeviceIndex']
     
+    p = pyaudio.PyAudio()
     device_info = p.get_device_info_by_index(mic_index)
     print(f"Recording using device [{mic_index}]: {device_info['name']}")
-
-    p = pyaudio.PyAudio()
+    
     stream = p.open(format=pyaudio.paInt16,
                     channels=1,
                     rate=44100,
