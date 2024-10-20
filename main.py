@@ -193,12 +193,6 @@ class SpookyPi:
             print("No active conversation to continue.")
             return
 
-        if self.active_exchange_count >= self.max_exchange_count:
-            self.logger.info(f"Reached the maximum exchange count of {self.max_exchange_count}. Ending conversation.")
-            self.active_conversation = None
-            self.active_exchange_count = 0
-            self.play_goodbye_message()
-
         while self.active_conversation:
             self.listening_for_user_response = True
            
@@ -228,11 +222,30 @@ class SpookyPi:
             if self.enable_text_to_speech:
                 print(f"{self.prop_name}'s response:\n{self.active_conversation}")
                 self.voice_service.generate_streaming_audio(self.active_conversation) 
+                
             else:
                 print(f"{self.prop_name}'s response:\n{self.active_conversation}")
+
+            # check to see if we have reached the max exchange count
+            
+            if self.active_exchange_count >= self.max_exchange_count:
+                self.logger.info(f"Reached the maximum exchange count of {self.max_exchange_count}. Ending conversation.")
+                self.active_conversation = None
+                self.active_exchange_count = 0
+                if self.enable_text_to_speech:
+                    self.logger.info("Playing goodbye message...")
+                    self.play_goodbye_message()
+                else:
+                    self.logger.info("Printing goodbye message...")
+                    print("Goodbye!")
+            else:
+                self.active_exchange_count += 1
     
     def play_goodbye_message(self):
         self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'ai_services/resources/goodbye.mp3'))
+    
+    def play_listening_message(self):
+        self.voice_service.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'ai_services/resources/listening.mp3'))
     
     def get_array_string(self, array, separator=", ", last_separator=" or "):
         """

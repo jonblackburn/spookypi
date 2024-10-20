@@ -68,7 +68,7 @@ class VoiceService:
         
             with sr.Microphone(device_index=self.microphone_index) as source:
                 rec.adjust_for_ambient_noise(source)
-
+                self.play_listening_message()
                 # Log start timings
                 start_time = time.time()
                 self.logger.info(f"Listening for user response at {start_time}...")
@@ -97,6 +97,9 @@ class VoiceService:
             self.logger.exception(f"Could not request results from Google Speech Recognition service; {e}", exc_info=e)
         except Exception as ex:
             self.logger.exception(f"Failed to capture user response: {str(ex)}", exc_info=ex)
+
+    def play_listening_message(self):
+        self.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'resources/listening.mp3'))
     
     def play_audio_from_file(self, file_path):
         print(f"Playing file at path: {file_path}")
