@@ -23,7 +23,7 @@ class VoiceService:
         self.pause_threshold = config['App']['MaxSilenceDuration']
         self.audio_timeout = config['App']['AudioTimeout']
         self.captures_path = config_path.replace("config.json", "logs/captures/")
-        self.listen_delay = config['App']['ListenDelay']
+        self.listen_delay = config['App']['ListenDelay'] or 1
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
 
