@@ -103,7 +103,8 @@ This section configures application-specific settings.
     "AudioInputDeviceIndex": 1,
     "StartTriggerWords": ["hello"],
     "EndTriggerWords": ["goodbye"],
-    "MaxExchangeCount": 3
+    "MaxExchangeCount": 3,
+    "ListenDelay": 1.0
 }
 ```
 
@@ -115,6 +116,7 @@ This section configures application-specific settings.
 - **StartTriggerWords**: Words to start the interaction.
 - **EndTriggerWords**: Words to end the interaction.
 - **MaxExchangeCount**: Maximum number of exchanges per interaction.
+- **ListenDelay**: Number of seconds to wait after telling the user that it's listening, before listening begins (this should be kept around 1 second as it is designed to allow the "I'm listening" message to play.)
 
 ## Logging Section
 
