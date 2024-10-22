@@ -23,6 +23,7 @@ class VoiceService:
         self.pause_threshold = config['App']['MaxSilenceDuration']
         self.audio_timeout = config['App']['AudioTimeout']
         self.captures_path = config_path.replace("config.json", "logs/captures/")
+        self.listen_delay = config['App']['ListenDelay']
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
 
@@ -67,8 +68,12 @@ class VoiceService:
             rec.pause_threshold = self.pause_threshold
         
             with sr.Microphone(device_index=self.microphone_index) as source:
-                rec.adjust_for_ambient_noise(source)
+                rec.adjust_for_ambient_noise(source, duration=2)
                 self.play_listening_message()
+                
+                # delay while the message plays:
+                time.sleep(self.listen_delay)
+                
                 # Log start timings
                 start_time = time.time()
                 self.logger.info(f"Listening for user response at {start_time}...")
@@ -97,6 +102,8 @@ class VoiceService:
             self.logger.exception(f"Could not request results from Google Speech Recognition service; {e}", exc_info=e)
         except Exception as ex:
             self.logger.exception(f"Failed to capture user response: {str(ex)}", exc_info=ex)
+        finally:
+            return "*silence*"
 
     def play_listening_message(self):
         self.play_audio_from_file(os.path.join(os.path.dirname(__file__), 'resources/listening.mp3'))
