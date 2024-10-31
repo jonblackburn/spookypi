@@ -65,6 +65,7 @@ class SpookyPi:
         if self.allow_detection_threading:
             self.object_detector.add_observer(self.handle_events)
             self.object_detector.start()
+            
         else:
             self.logger.warning("Multi threaded support is disabled running the detection in the ui thread -- this is only valuable for development and testing scenarios.")
             if self.allow_detection_threading:

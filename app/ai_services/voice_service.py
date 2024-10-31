@@ -26,6 +26,7 @@ class VoiceService:
         self.listen_delay = config['App']['ListenDelay'] or 1
         self.logger = logger or logging.getLogger(__name__)
         self.openai_service = openai_service
+        self.speaker_time_limit = config['App']['SpeakerTimeLimit'] or None
 
         audio_path = os.path.join(os.path.dirname(__file__), 'silent_wav_3.wav')
 
@@ -33,6 +34,9 @@ class VoiceService:
         self.microphone_index = config['App']['AudioInputDeviceIndex'] 
         if(self.audio_timeout <= 0):
             self.audio_timeout = None
+
+        if(self.speaker_time_limit <= 0):
+            self.speaker_time_limit = None
 
     def generate_audio(self, text:str):
         try:
@@ -79,7 +83,7 @@ class VoiceService:
                 self.logger.info(f"Listening for user response at {start_time}...")
 
                 # Listen for the audio
-                audio = rec.listen(source, timeout=self.audio_timeout)
+                audio = rec.listen(source, timeout=self.audio_timeout, phrase_time_limit=self.speaker_time_limit)
                 
                 # Log timings
                 listen_complete_time = time.time()
@@ -98,11 +102,12 @@ class VoiceService:
                 return user_response
         except sr.UnknownValueError:
             self.logger.exception("Whisper could not understand audio")
+            return "*silence*"
         except sr.RequestError as e:
             self.logger.exception(f"Could not request results from Google Speech Recognition service; {e}", exc_info=e)
+            return "*silence*"
         except Exception as ex:
             self.logger.exception(f"Failed to capture user response: {str(ex)}", exc_info=ex)
-        finally:
             return "*silence*"
 
     def play_listening_message(self):
