@@ -1,6 +1,7 @@
 # SpookyPi
+# Version Alpha 1
 
-Welcome to the SpookyPi project! This project is designed to bring some spooky fun to your Raspberry Pi.
+Welcome to the SpookyPi project! This project is designed to bring some spooky fun to your Raspberry Pi.  
 
 ## Table of Contents
 - [Introduction](#introduction)
