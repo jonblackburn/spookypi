@@ -8,8 +8,6 @@ Welcome to the SpookyPi project! This project is designed to bring some spooky f
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 SpookyPi is project that spawned by the desire to build a fun interactive halloween experience for the kids in my neighborhood.  The code in this respository is used to power props - so far only one, but with future plans for more - which use computer vision to identify humans, then
